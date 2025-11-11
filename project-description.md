@@ -1,49 +1,39 @@
 # **Website Project Description**
 
-## **Minigames**
-
-
+## **SpaceX**
 
 ## **2. Project Idea**
 
-Website with a few minigames to play and have fun.
+Website with information about SpaceX and the history of it.
 
 ---
 
 ## **3. Target Audience**
 
-The Website is for kids or teenagers that want to have fun, are bored and like to play games.
+The Website is for people who want to learn more about SpaceX and their work.
 
 ---
 
 ## **4. Structure of the Website**
 
-It will have a main page from where you can go to 4 or 5  minigames.
+It will have a mainpage from where you can go to other websites with the history, ongoing projects and more.
 
 
 ---
 
 ## **5. Design and Layout**
 
-We will use the color blue and its variations with black and white.
-It will be a line at the top.
-The footer will be the same on all pages it will be 2025 and our names.
+We will use the main colors of SpaceX(black, white, gray).
+There will be sections with text and pictures.
+There will also be a footer that's the same on all pages.
 
 ---
 
-## **6.Game ideas**
-TicTacToe, Hangman, Numberguesser, Connect Four ...
+## **6. Milestones**
 
----
-
-## **7. Milestones**
-
-* Plan the main steps for your project.
-  *Example:*
-
-  * **Week 1:** Planning and creating the structure
-  * **Week 2:** Building HTML pages and programming games
-  * **Week 3:** Styling with CSS and programming more games
+  * **Week 1:** Planning and creating the structure and researching about SpaceX
+  * **Week 2:** Building HTML pages and doing more research.
+  * **Week 3:** Styling with CSS
   * **Week 4:** Testing and final presentation
 
 ---
