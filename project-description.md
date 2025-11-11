@@ -12,13 +12,14 @@ Website with a few minigames to play and have fun.
 
 ## **3. Target Audience**
 
-My Website is for kids or teenagers that want to have fun are bored and like to play games.
+The Website is for kids or teenagers that want to have fun, are bored and like to play games.
 
 ---
 
 ## **4. Structure of the Website**
 
-It will have a main page from where you can go to 6 or 7 minigames.
+It will have a main page from where you can go to 4 or 5  minigames.
+
 
 ---
 
@@ -30,7 +31,12 @@ The footer will be the same on all pages it will be 2025 and our names.
 
 ---
 
-## **6. Milestones**
+## **6.Game ideas**
+TicTacToe, Hangman, Numberguesser, Connect Four ...
+
+---
+
+## **7. Milestones**
 
 * Plan the main steps for your project.
   *Example:*
