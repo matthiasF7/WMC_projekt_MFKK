@@ -1,12 +1,22 @@
 
 h1{
-background-color:rgba(158, 158, 158, 0.562);
+background-color:rgba(157, 157, 157, 0.562);
 font-size: 55px;
 text-align: center;
+text-decoration: underline;
+}
+
+h2{
+    font-size: 30px;
+    background-color: rgba(157, 157, 157, 0.562);
+}
+
+p{
+    font-size: 19px;
 }
 
 footer{
-    background-color: rgba(158, 158, 158, 0.562);
+    background-color: rgb(233, 233, 233);
     text-align: center;
     color: rgb(0, 0, 0);
 }
