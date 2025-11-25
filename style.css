@@ -74,6 +74,12 @@ html, body {
       border-radius: 5px;
     }
 
-    #link1 { top: 100px; left: 300px; }
-    #link2 { top: 100px; left: 800px; }
-    #link3 { top: 100px; left: 1200px; }
+    #link1 { 
+      top: 100px; left: 300px;
+     }
+    #link2 { 
+      top: 100px; left: 750px;
+    }
+    #link3 {
+       top: 100px; left: 1200px;
+       }
