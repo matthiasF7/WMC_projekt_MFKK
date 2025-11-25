@@ -52,25 +52,4 @@ html, body {
 
 
 
-     body {
-      background-image: url('pictures/earth-background.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .link {
-      position: absolute; 
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      background: rgba(0,0,0,0.5);
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-
-    #europe { top: 100px; left: 300px; }
-    #asia { top: 100px; left: 800px; }
-    #afrika { top: 100px; left: 1200px; }
+    
