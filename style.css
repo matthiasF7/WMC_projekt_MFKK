@@ -32,10 +32,7 @@ html, body {
       height: 100%;
     }
 
-    
-
-
-
+  
     #earth {
       width: 100%;
       height: 100%;
@@ -74,6 +71,6 @@ html, body {
       border-radius: 5px;
     }
 
-    #link1 { top: 100px; left: 300px; }
-    #link2 { top: 100px; left: 800px; }
-    #link3 { top: 100px; left: 1200px; }
+    #europe { top: 100px; left: 300px; }
+    #asia { top: 100px; left: 800px; }
+    #afrika { top: 100px; left: 1200px; }
