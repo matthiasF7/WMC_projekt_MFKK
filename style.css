@@ -1,14 +1,16 @@
 h1 {
   background-color: transparent;
   color: gray;
-  font-size: 55px;
+  font-size: 60px;
   text-align: center;
   text-decoration: underline;
 }
 
 h2 {
-  font-size: 30px;
-  background-color: rgba(155, 155, 155, 0.562);
+  font-size: 35px;
+  text-align: center;
+  background-color: transparent;
+  color: gray;
 }
 
 p {
