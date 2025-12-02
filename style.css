@@ -1,6 +1,6 @@
 h1 {
   background-color: transparent;
-  color: gray;
+  color: rgb(115, 115, 115);
   font-size: 60px;
   text-align: center;
   text-decoration: underline;
@@ -10,11 +10,16 @@ h2 {
   font-size: 35px;
   text-align: center;
   background-color: transparent;
-  color: gray;
+  color: rgb(115, 115, 115);
 }
 
 p {
-  font-size: 19px;
+  font-size: 23px;
+}
+
+li {
+  font-size: 23px;
+  margin-bottom: 3px;
 }
 
 
