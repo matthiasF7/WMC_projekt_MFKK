@@ -1,5 +1,6 @@
 h1 {
-  background-color: rgba(155, 155, 155, 0.562);
+  background-color: transparent;
+  color: gray;
   font-size: 55px;
   text-align: center;
   text-decoration: underline;
