@@ -44,6 +44,16 @@ body {
   display: block;
 }
 
+.companielink {
+  font-size: 23px;
+  color: rgb(0, 0, 0);
+  text-decoration:underline;
+}
+.companielink:hover {
+  color: rgb(102, 102, 102);
+  font-size:24px;
+}
+
 footer {
   position: absolute;
   bottom: 10px;
