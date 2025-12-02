@@ -6,6 +6,13 @@ h1 {
   text-decoration: underline;
 }
 
+#informtext {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: white
+}
+
 h2 {
   font-size: 35px;
   text-align: center;
