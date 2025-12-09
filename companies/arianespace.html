@@ -1,28 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Arianespace</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arianespace - Spaceflight</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('../pictures/earth-background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: rgba(20, 20, 40, 0.95);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+
+    .menu-btn {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgb(76, 227, 247);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      text-decoration: none;
+    }
+
+    .menu-btn:first-of-type {
+      margin-top: 0;
+    }
+
+    .menu-btn:hover {
+      background: rgb(50, 200, 220);
+    }
+
+    .menu-list {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .menu-list.show {
+      display: block;
+    }
+
+    .menu-list a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      background: rgba(76, 227, 247, 0.1);
+      margin-bottom: 5px;
+      border-radius: 3px;
+    }
+
+    .menu-list a:hover {
+      background: rgba(76, 227, 247, 0.3);
+      border-left-color: rgb(76, 227, 247);
+      padding-left: 20px;
+      color: rgb(76, 227, 247);
+    }
+
+    .main-content {
+      margin-left: 220px;
+      width: calc(100% - 220px);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-section {
+      padding: 40px;
+      background: rgba(20, 20, 40, 0.3);
+      border-bottom: 2px solid rgb(76, 227, 247);
+    }
+
+    .breadcrumb {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .breadcrumb a {
+      color: rgb(76, 227, 247);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .main-content h1 {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 5px;
+      font-size: 32px;
+    }
+
+    .content-box {
+      background: rgba(20, 20, 40, 0.8);
+      padding: 40px;
+      border: 2px solid rgb(76, 227, 247);
+      color: rgba(255, 255, 255, 0.8);
+      flex: 1;
+      overflow-y: auto;
+      margin: 0;
+    }
+
+    .content-box h2 {
+      color: rgb(76, 227, 247);
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .content-box h3 {
+      color: rgb(76, 227, 247);
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .content-box p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .content-box ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .content-box li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .content-box strong {
+      color: rgb(76, 227, 247);
+    }
+
+    footer {
+      background: rgba(20, 20, 40, 0.95);
+      padding: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 2px solid rgb(76, 227, 247);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>Arianespace</h1>
-    </header>
 
-        <img src="../pictures/arianespace-logo.jpeg" alt="Arianespace logo" width="580" height="280">
+  <div class="sidebar">
+    <details open>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Companies
+      </summary>
+      <div class="menu-list show">
+        <a href="spacex.html">SpaceX</a>
+        <a href="blue-origin.html">Blue Origin</a>
+        <a href="united-launch-alliance.html">United Launch Alliance</a>
+        <a href="arianespace.html">Arianespace</a>
+        <a href="airbus-defence-and-space.html">Airbus D&S</a>
+      </div>
+    </details>
 
-    <h2>History</h2>
-    <p>Arianespace was founded in 1980 as the world's first commercial launch services provider, created to operate the Ariane family of rockets.
-        In 1984, it achieved its first major success with the Ariane 3, which boosted Europe's presence in the commercial satellite market.
-        Throughout the 1990s and 2000s, Ariane 4 and Ariane 5 became highly reliable workhorses, securing Arianespace's position as a global leader in commercial launches.
-        In 2023, the Ariane 5 completed its final flight, and Arianespace is now transitioning to the next-generation Ariane 6, which aims to continue Europe's independent access to space.</p>
+    <details open>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Continents
+      </summary>
+      <div class="menu-list show">
+        <a href="../continents/north-america.html">North America</a>
+        <a href="../continents/europe.html">Europe</a>
+        <a href="../continents/asia.html">Asia</a>
+        <a href="../continents/afrika.html">Africa</a>
+      </div>
+    </details>
+  </div>
 
-        
+  <div class="main-content">
+    <div class="header-section">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a> / <strong>Arianespace</strong>
+      </div>
+      <h1>Arianespace</h1>
+    </div>
+
+    <div class="content-box">
+      <h2>Arianespace SA</h2>
+      <p>Arianespace is a European space launch service provider founded in 1980. Headquartered in Évry, France, Arianespace provides launch services for commercial, civil, and institutional payloads using the Ariane family of launch vehicles.</p>
+      
+      <h3>Overview</h3>
+      <p>Arianespace operates from launch facilities in French Guiana and operates the Ariane 5 vehicle, which has one of the highest mission success rates in the industry. The company is transitioning to the Ariane 6 for next-generation capabilities.</p>
+
+      <h3>Launch Vehicles</h3>
+      <ul>
+        <li><strong>Ariane 5:</strong> Heavy-lift launcher with unmatched reliability and dual-payload capability</li>
+        <li><strong>Ariane 6:</strong> Next-generation launcher with increased performance and cost efficiency</li>
+        <li><strong>Vega:</strong> Small-lift vehicle for medium-sized satellite deployment</li>
+      </ul>
+
+      <h3>Mission Heritage</h3>
+      <p>Arianespace has established an impressive track record with over 300 successful launches. The company serves the telecommunications, Earth observation, and scientific communities worldwide.</p>
+
+      <h3>European Commitment</h3>
+      <p>Arianespace represents European launch independence and is critical for Europe's access to space. The company is investing in the future with Ariane 6 and exploring innovative launch solutions including reusable rocket technology.</p>
+    </div>
 
     <footer>
-        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
     </footer>
+  </div>
 
 </body>
 </html>

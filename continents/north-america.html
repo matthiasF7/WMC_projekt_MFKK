@@ -3,15 +3,281 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>North America</title>
-  <link rel="stylesheet" href="../style.css" />
-  <h1>North America</h1>
+  <title>North America - Spaceflight</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('../pictures/earth-background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: rgba(20, 20, 40, 0.95);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+
+    .menu-btn {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgb(76, 227, 247);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      text-decoration: none;
+    }
+
+    .menu-btn:first-of-type {
+      margin-top: 0;
+    }
+
+    .menu-btn:hover {
+      background: rgb(50, 200, 220);
+    }
+
+    .menu-list {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .menu-list.show {
+      display: block;
+    }
+
+    .menu-list a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      background: rgba(76, 227, 247, 0.1);
+      margin-bottom: 5px;
+      border-radius: 3px;
+    }
+
+    .menu-list a:hover {
+      background: rgba(76, 227, 247, 0.3);
+      border-left-color: rgb(76, 227, 247);
+      padding-left: 20px;
+      color: rgb(76, 227, 247);
+    }
+
+    .main-content {
+      margin-left: 220px;
+      width: calc(100% - 220px);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-section {
+      padding: 40px;
+      background: rgba(20, 20, 40, 0.3);
+      border-bottom: 2px solid rgb(76, 227, 247);
+    }
+
+    .breadcrumb {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .breadcrumb a {
+      color: rgb(76, 227, 247);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .main-content h1 {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 5px;
+      font-size: 32px;
+    }
+
+    .content-box {
+      background: rgba(20, 20, 40, 0.8);
+      padding: 40px;
+      border: 2px solid rgb(76, 227, 247);
+      color: rgba(255, 255, 255, 0.8);
+      flex: 1;
+      overflow-y: auto;
+      margin: 0;
+    }
+
+    .content-box h2 {
+      color: rgb(76, 227, 247);
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .content-box h3 {
+      color: rgb(76, 227, 247);
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .company-card {
+      background: rgba(76, 227, 247, 0.08);
+      padding: 20px;
+      border-left: 4px solid rgb(76, 227, 247);
+      margin-bottom: 25px;
+      border-radius: 5px;
+    }
+
+    .company-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .company-card p {
+      margin-bottom: 10px;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .company-card a {
+      color: rgb(76, 227, 247);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .company-card a:hover {
+      text-decoration: underline;
+    }
+
+    .content-box p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .content-box ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .content-box li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: rgba(20, 20, 40, 0.95);
+      padding: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 2px solid rgb(76, 227, 247);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
+
 <body>
-  
+
+  <div class="sidebar">
+    <details open>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Companies
+      </summary>
+      <div class="menu-list show">
+        <a href="../companies/spacex.html">SpaceX</a>
+        <a href="../companies/blue-origin.html">Blue Origin</a>
+        <a href="../companies/united-launch-alliance.html">United Launch Alliance</a>
+        <a href="../companies/arianespace.html">Arianespace</a>
+        <a href="../companies/airbus-defence-and-space.html">Airbus D&S</a>
+      </div>
+    </details>
+
+    <details open>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Continents
+      </summary>
+      <div class="menu-list show">
+        <a href="north-america.html">North America</a>
+        <a href="europe.html">Europe</a>
+        <a href="asia.html">Asia</a>
+        <a href="afrika.html">Africa</a>
+      </div>
+    </details>
+  </div>
+
+  <div class="main-content">
+    <div class="header-section">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a> / <strong>North America</strong>
+      </div>
+      <h1>North America - Space Industry</h1>
+    </div>
+
+    <div class="content-box">
+      <h2>🚀 Space Agencies & Companies in North America</h2>
+      <p>North America is home to world-leading space organizations. The United States dominates the commercial space industry and leads in space exploration technology, while Canada contributes significantly to space research and robotics.</p>
+
+      <h3>Major Organizations</h3>
+
+      <div class="company-card">
+        <h3>SpaceX</h3>
+        <p><strong>Location:</strong> Hawthorne, California, USA</p>
+        <p>SpaceX revolutionized the space industry with reusable rockets. The company operates the Falcon 9 and Falcon Heavy rockets, provides crew and cargo services to the ISS, and is developing Starship for lunar and Mars missions.</p>
+        <p><a href="../companies/spacex.html">Learn more about SpaceX →</a></p>
+      </div>
+
+      <div class="company-card">
+        <h3>Blue Origin</h3>
+        <p><strong>Location:</strong> Kent, Washington, USA</p>
+        <p>Blue Origin develops reusable spacecraft and launch vehicles. New Shepard offers suborbital space tourism experiences, while New Glenn will provide heavy-lift orbital capabilities. The company is also developing lunar landers for NASA's Artemis program.</p>
+        <p><a href="../companies/blue-origin.html">Learn more about Blue Origin →</a></p>
+      </div>
+
+      <h3>Key Facilities</h3>
+      <ul>
+        <li><strong>Kennedy Space Center:</strong> Historic launch site in Florida for major missions</li>
+        <li><strong>SpaceX Starbase:</strong> Texas facility for Starship development and testing</li>
+        <li><strong>Blue Origin New Glenn Launch Site:</strong> Under development in Florida</li>
+        <li><strong>Canadian Space Agency:</strong> Supports ISS operations and Earth observation missions</li>
+      </ul>
+    </div>
 
     <footer>
-        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
     </footer>
+  </div>
+
 </body>
 </html>
