@@ -4,52 +4,231 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spaceflight</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-
-  <h1>Welcome to Spaceflight </h1>
-  <p id="informtext">This is a page to inform yourself about space companies and their ongoing Projekts like Missions and many more</p>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background-image: url('pictures/earth-background.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      margin: 0;
+      background-attachment: fixed;
       font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
     }
 
-    .link {
-      position: absolute; 
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: rgba(20, 20, 40, 0.95);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+
+    .menu-btn {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgb(76, 227, 247);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      text-decoration: none;
+    }
+
+    .menu-btn:first-of-type {
+      margin-top: 0;
+    }
+
+    .menu-btn:hover {
+      background: rgb(50, 200, 220);
+    }
+
+    .menu-list {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .menu-list.show {
+      display: block;
+    }
+
+    .menu-list a {
+      display: block;
+      padding: 10px 15px;
       color: white;
       text-decoration: none;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      background: rgba(76, 227, 247, 0.1);
+      margin-bottom: 5px;
+      border-radius: 3px;
+    }
+
+    .menu-list a:hover {
+      background: rgba(76, 227, 247, 0.3);
+      border-left-color: rgb(76, 227, 247);
+      padding-left: 20px;
+      color: rgb(76, 227, 247);
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 220px;
+      width: calc(100% - 220px);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-section {
+      padding: 40px;
+      background: rgba(20, 20, 40, 0.3);
+    }
+
+    .main-content h1 {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    .main-content #informtext {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .content-box {
+      background: rgba(20, 20, 40, 0.8);
+      padding: 40px;
+      border: 2px solid rgb(76, 227, 247);
+      color: rgba(255, 255, 255, 0.8);
+      flex: 1;
+      overflow-y: auto;
+      margin: 0;
+    }
+
+    .content-box h2 {
+      color: rgb(76, 227, 247);
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .content-box h3 {
+      color: rgb(76, 227, 247);
+      margin-top: 25px;
+      margin-bottom: 15px;
       font-size: 20px;
-      background:transparent;
-      padding: 5px 10px;
-      border-radius: 5px;
-    }
-    .link:hover {
-      color:rgb(76, 227, 247);
-      font-size: 21px;
     }
 
-    #europe { top: 55%; left: 60%; }
-    #asia { top: 60%; left: 95%; }
-    #africa { top: 55%; left: 30%; }
-    #america { top: 60%; left: 5px; }
+    .content-box p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .content-box ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .content-box li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: rgba(20, 20, 40, 0.95);
+      padding: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 2px solid rgb(76, 227, 247);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
   </style>
+</head>
 
+<body>
 
-  <a href="continents/europe.html" class="link" id="europe">Europe</a>
-  <a href="continents/asia.html" class="link" id="asia">Asia</a>
-  <a href="continents/north-america.html" class="link" id="america">North America</a>
-  <a href="continents/afrika.html" class="link" id="africa">Africa</a>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <details>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Companies
+      </summary>
+      <div class="menu-list show">
+        <a href="companies/spacex.html">SpaceX</a>
+        <a href="companies/blueorigin.html">Blue Origin</a>
+        <a href="companies/nasa.html">NASA</a>
+        <a href="companies/esa.html">ESA</a>
+        <a href="companies/cnsa.html">CNSA</a>
+      </div>
+    </details>
 
+    <details>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Continents
+      </summary>
+      <div class="menu-list show">
+        <a href="continents/north-america.html">North America</a>
+        <a href="continents/europe.html">Europe</a>
+        <a href="continents/asia.html">Asia</a>
+        <a href="continents/africa.html">Africa</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header-section">
+      <h1>Welcome to Spaceflight</h1>
+      <p id="informtext">This is a page to inform yourself about space companies and their ongoing Projects like Missions and many more</p>
+    </div>
+
+    <div class="content-box">
+      <h2>🚀 Explore Space Agencies & Companies</h2>
+      <p>Welcome to your gateway to understanding the world of spaceflight. Discover the companies and organizations that are pushing the boundaries of space exploration.</p>
+      
+      <h3>What You Can Explore</h3>
+      <ul>
+        <li><strong>Companies:</strong> Learn about SpaceX, Blue Origin, NASA, ESA, and CNSA</li>
+        <li><strong>Continents:</strong> Discover space programs and facilities across the world</li>
+        <li><strong>Missions:</strong> Follow ongoing and past space missions</li>
+        <li><strong>Technology:</strong> Understand the latest in rocket and spacecraft technology</li>
+      </ul>
+
+      <h3>Getting Started</h3>
+      <p>Use the sidebar menu on the left to navigate through different companies and continents. Click on any link to learn more about the specific organization or region.</p>
+    </div>
 
     <footer>
-        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
     </footer>
+  </div>
+
 </body>
 </html>

@@ -1,25 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SpaceX</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpaceX - Spaceflight</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('../pictures/earth-background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: rgba(20, 20, 40, 0.95);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+
+    .menu-btn {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgb(76, 227, 247);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      text-decoration: none;
+    }
+
+    .menu-btn:first-of-type {
+      margin-top: 0;
+    }
+
+    .menu-btn:hover {
+      background: rgb(50, 200, 220);
+    }
+
+    .menu-list {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .menu-list.show {
+      display: block;
+    }
+
+    .menu-list a {
+      display: block;
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      background: rgba(76, 227, 247, 0.1);
+      margin-bottom: 5px;
+      border-radius: 3px;
+    }
+
+    .menu-list a:hover {
+      background: rgba(76, 227, 247, 0.3);
+      border-left-color: rgb(76, 227, 247);
+      padding-left: 20px;
+      color: rgb(76, 227, 247);
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 220px;
+      width: calc(100% - 220px);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-section {
+      padding: 40px;
+      background: rgba(20, 20, 40, 0.3);
+      border-bottom: 2px solid rgb(76, 227, 247);
+    }
+
+    .main-content h1 {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    .breadcrumb {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .breadcrumb a {
+      color: rgb(76, 227, 247);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .breadcrumb a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .content-box {
+      background: rgba(20, 20, 40, 0.8);
+      padding: 40px;
+      border: 2px solid rgb(76, 227, 247);
+      color: rgba(255, 255, 255, 0.8);
+      flex: 1;
+      overflow-y: auto;
+      margin: 0;
+    }
+
+    .content-box h2 {
+      color: rgb(76, 227, 247);
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .content-box h3 {
+      color: rgb(76, 227, 247);
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .content-box p {
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .content-box ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .content-box li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .content-box strong {
+      color: rgb(76, 227, 247);
+    }
+
+    footer {
+      background: rgba(20, 20, 40, 0.95);
+      padding: 20px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      border-top: 2px solid rgb(76, 227, 247);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>SpaceX</h1>
-    </header>
 
-    <img src="../pictures/spacex-logo.jpg" alt="SpaceX logo" width="500" height="266">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <details open>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Companies
+      </summary>
+      <div class="menu-list show">
+        <a href="../companies/spacex.html">SpaceX</a>
+        <a href="../companies/blue-origin.html">Blue Origin</a>
+        <a href="../companies/united-launch-alliance.html">United Launch Alliance</a>
+        <a href="../companies/arianespace.html">Arianespace</a>
+        <a href="../companies/airbus-defence-and-space.html">Airbus D&S</a>
+      </div>
+    </details>
 
-    <h2>History</h2>
-        <p>SpaceX, founded by Elon Musk in 2002, aims to make space travel affordable and enable life on other planets.
-        It became the first private company to send a spacecraft to the ISS in 2012 and has pioneered reusable rockets with the Falcon 9.</p>
+    <details open>
+      <summary class="menu-btn">
+        <i class="fas fa-chevron-right"></i> Continents
+      </summary>
+      <div class="menu-list show">
+        <a href="../continents/north-america.html">North America</a>
+        <a href="../continents/europe.html">Europe</a>
+        <a href="../continents/asia.html">Asia</a>
+        <a href="../continents/afrika.html">Africa</a>
+      </div>
+    </details>
+  </div>
 
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header-section">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a> / <strong>SpaceX</strong>
+      </div>
+      <h1>SpaceX</h1>
+    </div>
+
+    <div class="content-box">
+      <h2>Space Exploration Technologies Corp.</h2>
+      <p>SpaceX is an American aerospace manufacturer and space transportation services company headquartered in Hawthorne, California. It was founded in 2002 by entrepreneur Elon Musk with the goal of reducing space transportation costs and enabling the colonization of Mars.</p>
+      
+      <h3>Overview</h3>
+      <p>SpaceX designs, manufactures, and launches advanced rockets and spacecraft. The company operates the Falcon 9 and Falcon Heavy rockets, and the Dragon spacecraft. SpaceX's ultimate goal is to make humanity a spacefaring civilization and a multi-planet species.</p>
+
+      <h3>Key Achievements</h3>
+      <ul>
+        <li><strong>Falcon 9:</strong> First privately-developed liquid-fueled rocket to resupply the International Space Station</li>
+        <li><strong>Dragon:</strong> First commercial spacecraft to dock with the ISS</li>
+        <li><strong>Falcon Heavy:</strong> World's most powerful operational rocket</li>
+        <li><strong>Starship:</strong> Next-generation fully reusable super heavy-lift launch system</li>
+      </ul>
+
+      <h3>Current Projects</h3>
+      <p>SpaceX is currently developing Starship, a fully reusable super heavy-lift launch system intended to carry both cargo and passengers on Earth-orbit, lunar, and Mars-orbit missions. The company also operates Starlink, a satellite internet constellation providing high-speed internet coverage globally.</p>
+
+      <h3>Notable Missions</h3>
+      <p>SpaceX has conducted numerous successful missions including crew rotations to the ISS through Commercial Crew Program, National Security Missions, and satellite deployments. The company continues to push the boundaries of space exploration through innovation and reusable rocket technology.</p>
+    </div>
 
     <footer>
-        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
     </footer>
+  </div>
 
 </body>
 </html>
