@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../pictures/earth-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: rgba(20, 20, 40, 0.95);
+  height: 100vh;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.menu-btn {
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.menu-list {
+  margin-top: 10px;
+}
+
+.menu-list a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+  background: rgba(76, 156, 247, 0.1);
+  margin-bottom: 5px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.menu-list a:hover {
+  background: rgba(76, 156, 247, 0.3);
+  border-left-color: rgb(76, 156, 247);
+  padding-left: 20px;
+  color: rgb(76, 156, 247);
+}
+
+.main-content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  height: 100vh;
+}
+
+.header-section {
+  padding: 40px;
+  background: rgba(20, 20, 40, 0.3);
+  border-bottom: 2px solid rgb(76, 156, 247);
+}
+
+.content-box {
+  background: rgba(20, 20, 40, 0.8);
+  padding: 40px;
+  border: 2px solid rgb(76, 156, 247);
+  color: rgba(255, 255, 255, 0.85);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.company-card {
+  background: rgba(76, 156, 247, 0.1);
+  border-left: 3px solid rgb(76, 156, 247);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+footer {
+  background: rgba(20, 20, 40, 0.95);
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+  border-top: 2px solid rgb(76, 156, 247);
+}
