@@ -2,202 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-      <title>United Launch Alliance - Spaceflight</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Zentrale CSS-Datei -->
+  <link href="../css/style.css" rel="stylesheet">
 
-    body {
-      background-image: url('../pictures/earth-background.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-attachment: fixed;
-      font-family: Arial, sans-serif;
-      display: flex;
-      height: 100vh;
-    }
-
-    .sidebar {
-      width: 220px;
-      background: rgba(20, 20, 40, 0.95);
-      height: 100vh;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-      overflow-y: auto;
-      position: fixed;
-      left: 0;
-      top: 0;
-      z-index: 100;
-    }
-
-    .menu-btn {
-      width: 100%;
-      padding: 12px 15px;
-      background: rgb(76, 156, 247);
-      border: none;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      margin-top: 15px;
-      text-decoration: none;
-    }
-
-    .menu-btn:first-of-type {
-      margin-top: 0;
-    }
-
-    .menu-btn:hover {
-      background: rgb(50, 200, 220);
-    }
-
-    .menu-list {
-      display: none;
-      margin-top: 10px;
-    }
-
-    .menu-list.show {
-      display: block;
-    }
-
-    .menu-list a {
-      display: block;
-      padding: 10px 15px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      border-left: 3px solid transparent;
-      transition: all 0.2s ease;
-      background: rgba(76, 156, 247, 0.1);
-      margin-bottom: 5px;
-      border-radius: 3px;
-    }
-
-    .menu-list a:hover {
-      background: rgba(76, 156, 247, 0.3);
-      border-left-color: rgb(76, 156, 247);
-      padding-left: 20px;
-      color: rgb(76, 156, 247);
-    }
-
-    .main-content {
-      margin-left: 220px;
-      width: calc(100% - 220px);
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .header-section {
-      padding: 40px;
-      background: rgba(20, 20, 40, 0.3);
-      border-bottom: 2px solid rgb(76, 156, 247);
-    }
-
-    .breadcrumb {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .breadcrumb a {
-      color: rgb(76, 156, 247);
-      text-decoration: none;
-    }
-
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-
-    .main-content h1 {
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      margin-bottom: 5px;
-      font-size: 32px;
-    }
-
-    .content-box {
-      background: rgba(20, 20, 40, 0.8);
-      padding: 40px;
-      border: 2px solid rgb(76, 156, 247);
-      color: rgba(255, 255, 255, 0.8);
-      flex: 1;
-      overflow-y: auto;
-      margin: 0;
-    }
-
-    .content-box h2 {
-      color: rgb(76, 156, 247);
-      margin-bottom: 20px;
-      font-size: 28px;
-    }
-
-    .content-box h3 {
-      color: rgb(76, 156, 247);
-      margin-top: 25px;
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-
-    .content-box p {
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-
-    .content-box ul {
-      margin-left: 20px;
-      margin-bottom: 15px;
-    }
-
-    .content-box li {
-      margin-bottom: 8px;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .content-box strong {
-      color: rgb(76, 156, 247);
-    }
-
-    footer {
-      background: rgba(20, 20, 40, 0.95);
-      padding: 20px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.7);
-      border-top: 2px solid rgb(76, 156, 247);
-      font-size: 12px;
-      flex-shrink: 0;
-    }
-  </style>
+  <title>United Launch Alliance - Spaceflight</title>
 </head>
 
 <body>
 
+  <!-- Sidebar -->
   <div class="sidebar">
     <details open>
       <summary class="menu-btn">
         <i class="fas fa-chevron-right"></i> Companies
       </summary>
       <div class="menu-list show">
-        <a href="spacex.html">SpaceX</a>
-        <a href="blue-origin.html">Blue Origin</a>
-        <a href="united-launch-alliance.html">United Launch Alliance</a>
-        <a href="arianespace.html">Arianespace</a>
-        <a href="airbus-defence-and-space.html">Airbus D&S</a>
+        <a href="../companies/spacex.html">SpaceX</a>
+        <a href="../companies/blue-origin.html">Blue Origin</a>
+        <a href="../companies/united-launch-alliance.html">United Launch Alliance</a>
+        <a href="../companies/arianespace.html">Arianespace</a>
+        <a href="../companies/airbus-defence-and-space.html">Airbus D&S</a>
       </div>
     </details>
 
@@ -214,6 +43,7 @@
     </details>
   </div>
 
+  <!-- Main Content -->
   <div class="main-content">
     <div class="header-section">
       <div class="breadcrumb">
@@ -247,6 +77,7 @@
       <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
     </footer>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
