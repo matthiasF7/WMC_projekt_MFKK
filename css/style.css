@@ -1,3 +1,6 @@
+/* ============================
+   Allgemeine Styles
+============================ */
 * {
   margin: 0;
   padding: 0;
@@ -10,89 +13,188 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   height: 100vh;
+  color: #f0f0f0;
+  font-size: 17px;
+  line-height: 1.8;
 }
 
+/* ============================
+   Sidebar
+============================ */
 .sidebar {
-  width: 220px;
-  background: rgba(20, 20, 40, 0.95);
+  width: 200px; /* wieder etwas kleiner */
+  background: rgba(10, 10, 30, 0.85); /* leicht transparent, Hintergrund sichtbar */
   height: 100vh;
   padding: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   position: fixed;
   left: 0;
   top: 0;
   z-index: 100;
+  border-radius: 0 10px 10px 0;
 }
 
 .menu-btn {
+  width: 100%;
   padding: 12px 15px;
+  background: rgba(0, 120, 215, 0.9);
+  border: none;
+  color: #fff;
   font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+  text-decoration: none;
+}
+
+.menu-btn:first-of-type {
+  margin-top: 0;
+}
+
+.menu-btn:hover {
+  background: rgba(0, 180, 230, 0.95);
 }
 
 .menu-list {
-  margin-top: 10px;
+  display: none;
+  margin-top: 8px;
+}
+
+.menu-list.show {
+  display: block;
 }
 
 .menu-list a {
   display: block;
   padding: 10px 15px;
-  color: white;
+  color: #f0f0f0;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   border-left: 3px solid transparent;
-  background: rgba(76, 156, 247, 0.1);
-  margin-bottom: 5px;
-  border-radius: 3px;
   transition: all 0.2s ease;
+  background: rgba(0, 120, 215, 0.15);
+  margin-bottom: 6px;
+  border-radius: 6px;
 }
 
 .menu-list a:hover {
-  background: rgba(76, 156, 247, 0.3);
-  border-left-color: rgb(76, 156, 247);
+  background: rgba(0, 180, 230, 0.25);
+  border-left-color: rgb(0, 120, 215);
   padding-left: 20px;
-  color: rgb(76, 156, 247);
+  color: rgb(0, 180, 230);
 }
 
+/* ============================
+   Main Content
+============================ */
 .main-content {
-  margin-left: 220px;
-  width: calc(100% - 220px);
+  margin-left: 200px;
+  width: calc(100% - 200px);
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header-section {
   padding: 40px;
-  background: rgba(20, 20, 40, 0.3);
-  border-bottom: 2px solid rgb(76, 156, 247);
+  background: rgba(10, 10, 30, 0.5); /* transparent für Hintergrundsichtbarkeit */
+  border-bottom: 2px solid rgba(0, 120, 215, 0.7);
+  border-radius: 0 0 10px 10px;
+  backdrop-filter: blur(5px); /* leichter Blur für modernes Aussehen */
 }
 
+.header-section h1 {
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  font-size: 38px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb {
+  color: #d0d0d0;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.breadcrumb a {
+  color: rgba(0, 180, 230, 0.9);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ============================
+   Content Box
+============================ */
 .content-box {
-  background: rgba(20, 20, 40, 0.8);
+  background: rgba(10, 10, 30, 0.55); /* leicht transparent */
   padding: 40px;
-  border: 2px solid rgb(76, 156, 247);
-  color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  border: 2px solid rgba(0, 120, 215, 0.6);
+  color: #f0f0f0;
   flex: 1;
   overflow-y: auto;
+  margin: 20px 20px 20px 20px;
+  backdrop-filter: blur(3px);
 }
 
-.company-card {
-  background: rgba(76, 156, 247, 0.1);
-  border-left: 3px solid rgb(76, 156, 247);
-  padding: 20px;
+.content-box h2 {
+  color: rgb(0, 180, 230);
   margin-bottom: 20px;
-  border-radius: 5px;
+  font-size: 32px;
 }
 
+.content-box h3 {
+  color: rgb(0, 180, 230);
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.content-box p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.content-box ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.content-box li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.content-box strong {
+  color: rgb(0, 180, 230);
+}
+
+/* ============================
+   Footer
+============================ */
 footer {
-  background: rgba(20, 20, 40, 0.95);
+  background: rgba(10, 10, 30, 0.5);
   padding: 20px;
   text-align: center;
-  font-size: 12px;
-  border-top: 2px solid rgb(76, 156, 247);
+  color: #d0d0d0;
+  border-top: 2px solid rgba(0, 120, 215, 0.6);
+  font-size: 14px;
+  flex-shrink: 0;
+  backdrop-filter: blur(3px);
 }
