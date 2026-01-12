@@ -204,4 +204,19 @@ footer {
   font-size: 14px;
   flex-shrink: 0;
   backdrop-filter: blur(3px);
+  
+  
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  text-align: center;
+  padding: 10px 0;
+
+ 
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
 }
+
+
