@@ -1,76 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Zentrale CSS-Datei -->
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Spaceflight</title>
-  </head>
-  <body>
-    <!-- Sidebar -->
-<div class="sidebar d-flex flex-column gap-2">
-  <details open>
-    <summary class="menu-btn btn btn-primary w-100 text-start">
-      <i class="fas fa-chevron-right"></i> Continents
-    </summary>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="menu-list show">
-      <!-- North America -->
-      <details class="ms-3">
-        <summary class="menu-btn btn btn-secondary w-100 text-start">
-          North America
-        </summary>
-        <div class="menu-list show ms-3">
-          <a href="companies/spacex.html">SpaceX</a>
-          <a href="companies/blue-origin.html">Blue Origin</a>
-          <a href="companies/united-launch-alliance.html"
-            >United Launch Alliance</a
-          >
-        </div>
-      </details>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Zentrale CSS-Datei -->
+  <link rel="stylesheet" href="css/style.css">
 
-      <!-- Europe -->
-      <details class="ms-3">
-        <summary class="menu-btn btn btn-secondary w-100 text-start">
-          Europe
-        </summary>
-        <div class="menu-list show ms-3">
-          <a href="companies/arianespace.html">Arianespace</a>
-          <a href="companies/airbus-defence-and-space.html"
-            >Airbus Defence & Space</a
-          >
-        </div>
-      </details>
+  <title>Spaceflight</title>
+</head>
 
-      <!-- Asia -->
-      <details class="ms-3">
-        <summary class="menu-btn btn btn-secondary w-100 text-start">
-          Asia
-        </summary>
-        <div class="menu-list show ms-3">
-          <span class="text-muted">No companies added yet</span>
-        </div>
-      </details>
+<body>
 
-      <!-- Africa -->
-      <details class="ms-3">
-        <summary class="menu-btn btn btn-secondary w-100 text-start">
-          Africa
-        </summary>
-        <div class="menu-list show ms-3">
-          <span class="text-muted">No companies added yet</span>
-        </div>
-      </details>
+  <!-- Sidebar -->
+  <div class="sidebar d-flex flex-column gap-2">
+    <details>
+      <summary class="menu-btn btn btn-primary w-100 text-start">
+        <i class="fas fa-chevron-right"></i> Companies
+      </summary>
+      <div class="menu-list show">
+        <a href="companies/spacex.html">SpaceX</a>
+        <a href="companies/blue-origin.html">Blue Origin</a>
+        <a href="companies/united-launch-alliance.html">United Launch Alliance</a>
+        <a href="companies/arianespace.html">Arianespace</a>
+        <a href="companies/airbus-defence-and-space.html">Airbus D&S</a>
+      </div>
+    </details>
+
+    <details>
+      <summary class="menu-btn btn btn-primary w-100 text-start">
+        <i class="fas fa-chevron-right"></i> Continents
+      </summary>
+      <div class="menu-list show">
+        <a href="continents/north-america.html">North America</a>
+        <a href="continents/europe.html">Europe</a>
+        <a href="continents/asia.html">Asia</a>
+        <a href="continents/afrika.html">Africa</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content d-flex flex-column">
+    <div class="header-section">
+      <h1 class="display-5 fw-bold">Welcome to Spaceflight</h1>
+      <p id="informtext" class="lead">This is a page to inform yourself about space companies and their ongoing projects like missions and many more.</p>
     </div>
-  </details>
-      <footer><p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p></footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+
+    <div class="content-box">
+      <h2>Explore Space Agencies & Companies</h2>
+      <p>Welcome to your gateway to understanding the world of spaceflight. Discover the companies and organizations that are pushing the boundaries of space exploration.</p>
+      
+      <h3>What You Can Explore</h3>
+      <ul>
+        <li><strong>Companies:</strong> Learn about SpaceX, Blue Origin, United Launch Alliance, Arianespace, and Airbus D&S</li>
+        <li><strong>Continents:</strong> Discover space programs and facilities across the world</li>
+        <li><strong>Missions:</strong> Follow ongoing and past space missions</li>
+        <li><strong>Technology:</strong> Understand the latest in rocket and spacecraft technology</li>
+      </ul>
+
+      <h3>Getting Started</h3>
+      <p>Use the sidebar menu on the left to navigate through different companies and continents. Click on any link to learn more about the specific organization or region.</p>
+    </div>
+
+    <footer>
+      <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
