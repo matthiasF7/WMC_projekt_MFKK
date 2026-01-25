@@ -107,7 +107,7 @@ body {
 }
 
 .header-section {
-  padding: 40px;
+  padding: 20px 40px;
   background: rgba(10, 10, 30, 0.5); /* transparent für Hintergrundsichtbarkeit */
   border-bottom: 2px solid rgba(0, 120, 215, 0.7);
   border-radius: 0 0 10px 10px;
@@ -192,7 +192,7 @@ body {
 ============================ */
 footer {
   background: rgba(10, 10, 30, 0.5);
-  padding: 20px;
+  padding: 12px 20px;
   text-align: center;
   color: #d0d0d0;
   border-top: 2px solid rgba(0, 120, 215, 0.6);
