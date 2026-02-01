@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="48x48" href="../pictures/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Zentrale CSS-Datei -->
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <title>South African National Space Agency</title>
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header-section d-flex align-items-center justify-content-between">
+        <div class="text-content">
+          <div class="breadcrumb">
+            <a href="../index.html">Home</a> /
+            <a href="../continents/afrika.html">Africa</a> /
+            <strong>South African National Space Agency</strong>
+          </div>
+          <h1 class="display-5 fw-bold">
+            South African National Space Agency
+          </h1>
+        </div>
+
+        <img
+          src="../pictures/south-african-national-space-agency-logo.jpg"
+          alt="South African National Space Agency logo"
+          class="img-fluid rounded ms-4"
+          style="max-width:350px;"
+        />
+      </div>
+
+      <div class="content-box">
+        <h2>South African National Space Agency (SANSA)</h2>
+        <p>
+          The South African National Space Agency (SANSA) is South Africa's
+          national space agency, established to promote and support the
+          development of space science, technology, and innovation.
+          SANSA operates under the Department of Science and Innovation
+          and is headquartered in Pretoria.
+        </p>
+
+        <h3>Overview</h3>
+        <p>
+          SANSA plays a key role in space-based Earth observation,
+          satellite communication, space weather monitoring, and
+          scientific research. The agency also supports education,
+          skills development, and international cooperation in space
+          activities.
+        </p>
+
+        <h3>Core Activities</h3>
+        <ul>
+          <li>
+            <strong>Earth Observation:</strong> Satellite data for
+            agriculture, environmental protection, and urban planning
+          </li>
+          <li>
+            <strong>Space Weather:</strong> Monitoring solar activity
+            and its effects on Earth and satellite systems
+          </li>
+          <li>
+            <strong>Satellite Operations:</strong> Tracking and control
+            of national and international satellites
+          </li>
+        </ul>
+
+        <h3>Mission Portfolio</h3>
+        <p>
+          SANSA has been involved in various satellite missions,
+          including Earth observation programs and space science
+          initiatives. The agency provides critical data for disaster
+          management, climate monitoring, and infrastructure development
+          across South Africa and the African continent.
+        </p>
+
+        <h3>Future Direction</h3>
+        <p>
+          The agency aims to expand South Africa's space capabilities
+          through new satellite missions, enhanced ground infrastructure,
+          and deeper collaboration with global space agencies. SANSA
+          also focuses on strengthening Africa's role in the global
+          space sector.
+        </p>
+      </div>
+
+      <footer>
+        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  fetch("sidebar.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    });
+</script>
+
+  </body>
+</html>

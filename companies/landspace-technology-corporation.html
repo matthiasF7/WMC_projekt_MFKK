@@ -19,63 +19,8 @@
 
   <body>
     <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column gap-2">
-      <details>
-        <summary class="menu-btn btn btn-primary w-100 text-start">
-          <i class="fas fa-chevron-right"></i> North America
-        </summary>
-        <div class="menu-list show">
-          <a href="../continents/north-america.html" class="continent-link">Continent Info</a>
-          <div class="ps-3">
-            <a href="spacex.html">SpaceX</a>
-            <a href="blue-origin.html">Blue Origin</a>
-            <a href="united-launch-alliance.html">United Launch Alliance</a>
-          </div>
-        </div>
-      </details>
+    <div id="sidebar-container"></div>
 
-      <details>
-        <summary class="menu-btn btn btn-primary w-100 text-start">
-          <i class="fas fa-chevron-right"></i> Europe
-        </summary>
-        <div class="menu-list show">
-          <a href="../continents/europe.html" class="continent-link">Continent Info</a>
-          <div class="ps-3">
-            <a href="arianespace.html">Arianespace</a>
-            <a href="airbus-defence-and-space.html">Airbus D&S</a>
-          </div>
-        </div>
-      </details>
-
-      <details open>
-        <summary class="menu-btn btn btn-primary w-100 text-start">
-          <i class="fas fa-chevron-right"></i> Asia
-        </summary>
-        <div class="menu-list show">
-          <a href="../continents/asia.html" class="continent-link">Continent Info</a>
-          <div class="ps-3">
-            <a href="china-aerospace-sience-and-technology-corporation.html">
-              China Aerospace Science and Technology Corporation
-            </a>
-            <a href="indian-space-research.html">Indian Space Research Organisation</a>
-            <a href="landspace-technology-corporation.html">LandSpace Technology Corporation</a>
-          </div>
-        </div>
-      </details>
-
-      <details>
-  <summary class="menu-btn btn btn-primary w-100 text-start">
-    <i class="fas fa-chevron-right"></i> Africa
-  </summary>
-  <div class="menu-list show">
-    <a href="../continents/afrika.html" class="continent-link">Continent Info</a>
-    <div class="ps-3">
-      <a href="egyptian-space-agency.html">Egyptian Space Agency</a>
-    </div>
-  </div>
-</details>
-
-    </div>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -148,5 +93,13 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  fetch("sidebar.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    });
+</script>
+
   </body>
 </html>
