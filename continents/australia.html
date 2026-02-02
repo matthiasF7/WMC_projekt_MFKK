@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="48x48" href="../pictures/favicon.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <title>Australia - Spaceflight</title>
+</head>
+
+<body>
+
+  <div id="sidebar-container"></div>
+
+  <div class="main-content d-flex flex-column">
+
+    <div class="header-section d-flex align-items-center justify-content-between">
+          
+      <div class="text-content">
+        <h1 class="display-5 fw-bold">Australia</h1>
+        
+        <p id="informtext" class="lead">
+          Australia plays an increasingly important role in modern spaceflight.
+          Thanks to its geographic location, strong research institutions and growing
+          private sector, Australia is becoming a key partner in international space missions,
+          satellite technology and deep space communication.
+        </p>
+      </div>
+
+      <img src="../pictures/Australia_on_the_globe.png"
+           alt="australia image"
+           class="img-fluid rounded ms-4"
+           style="max-width:250px;">
+    </div>
+
+    <div class="content-box container-fluid">
+
+      <h2 class="text-primary mb-4">Space Activities in Australia</h2>
+      <p>
+        Australia has a long history in space-related research, especially in radio astronomy,
+        satellite tracking and Earth observation. In recent years, the Australian government
+        has invested heavily in building a competitive space industry, supported by the
+        Australian Space Agency and numerous private companies.
+      </p>
+
+      <h3 class="text-primary mt-4">Major Organizations</h3>
+
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="company-card">
+            <h4>Australian Space Agency (ASA)</h4>
+            <p><strong>Location:</strong> Adelaide, South Australia</p>
+            <p>
+              The Australian Space Agency was founded in 2018 to grow Australia's space economy.
+              It supports national and international missions, regulates space activities and
+              collaborates closely with agencies such as NASA, ESA and JAXA.
+            </p>
+            <p>
+              The agency focuses on satellite technology, space situational awareness,
+              Earth observation and space exploration support.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="company-card">
+            <h4>Gilmour Space Technologies</h4>
+            <p><strong>Location:</strong> Queensland, Australia</p>
+            <p>
+              Gilmour Space Technologies is Australia's leading private launch company.
+              It develops hybrid rockets and small satellite launch vehicles such as the
+              Eris rocket, designed to provide affordable access to space.
+            </p>
+            <p>
+              The company aims to establish regular orbital launches from Australian soil,
+              strengthening the country's independent space capabilities.
+            </p>
+            <a href="../companies/gilmour-space.html">Learn more about Gilmour Space →</a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-primary mt-5">Key Facilities</h3>
+      <ul>
+        <li><strong>Canberra Deep Space Communication Complex:</strong> Supports deep space missions and communicates with spacecraft across the solar system</li>
+        <li><strong>Woomera Test Range:</strong> Historic and modern testing area for rockets and space technology</li>
+        <li><strong>Square Kilometre Array (SKA):</strong> One of the world's largest radio astronomy projects</li>
+        <li><strong>Whalers Way Orbital Launch Complex:</strong> Planned commercial launch site in South Australia</li>
+      </ul>
+
+      <h3 class="text-primary mt-4">Australia's Role in Global Spaceflight</h3>
+      <p>
+        Australia's southern hemisphere location makes it ideal for tracking spacecraft
+        and observing deep space. The country is a trusted international partner and is
+        expanding its role in lunar missions, satellite services and space sustainability.
+      </p>
+
+    </div>
+
+    <footer>
+      © Matthias Frei, Kilian Kager - 2CHIF WMC Projekt
+    </footer>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    fetch("../companies/sidebar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("sidebar-container").innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
