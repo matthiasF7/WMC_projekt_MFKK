@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="48x48" href="../pictures/favicon.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Zentrale CSS-Datei -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <title>Southern Launch - Spaceflight</title>
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+   
+    <div class="header-section d-flex align-items-center justify-content-between">
+    
+      <div class="text-content">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a> /
+          <a href="../continents/australia.html">Australia</a> /
+          <strong>Southern Launch</strong>
+        </div>
+        <h1 class="display-5 fw-bold">Southern Launch</h1>
+      </div>
+
+      <img src="../pictures/southern-launch.jfif"
+           alt="Southern Launch logo"
+           class="img-fluid rounded ms-4"
+           style="max-width:330px;">
+    </div>
+
+    <div class="content-box">
+      <h2>Southern Launch</h2>
+      <p>
+        Southern Launch is an Australian commercial space company specializing in launch services and
+        launch infrastructure. The company was founded in 2017 and plays a key role in establishing
+        Australia as a space launch nation.
+      </p>
+      
+      <h3>Overview</h3>
+      <p>
+        Southern Launch provides safe, regulated launch sites for suborbital and orbital missions.
+        The company works with domestic and international space organizations, startups, and
+        research institutions to support rocket testing and spaceflight operations.
+      </p>
+
+      <h3>Key Capabilities</h3>
+      <ul>
+        <li>Operation of licensed launch facilities in South Australia</li>
+        <li>Support for suborbital and orbital rocket launches</li>
+        <li>Launch logistics, safety, and regulatory compliance</li>
+        <li>Collaboration with commercial and research partners</li>
+      </ul>
+
+      <h3>Launch Sites</h3>
+      <p>
+        Southern Launch operates the Koonibba Test Range and the Whalers Way Orbital Launch Complex.
+        These sites are designed to support a wide range of launch vehicles and mission profiles,
+        helping Australia enter the global launch market.
+      </p>
+
+      <h3>Role in Australian Space Industry</h3>
+      <p>
+        By providing modern launch infrastructure, Southern Launch enables innovation within
+        Australia’s space sector and supports the development of sovereign launch capabilities.
+        The company contributes to economic growth and high-technology job creation.
+      </p>
+    </div>
+
+    <footer>
+      <p>© Matthias Frei, Kilian Kager - 2CHIF WMC Projekt</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    fetch("sidebar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("sidebar-container").innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
