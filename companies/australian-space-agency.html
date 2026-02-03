@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="48x48" href="../pictures/favicon.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Zentrale CSS-Datei -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <title>Australian Space Agency - Spaceflight</title>
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div id="sidebar-container"></div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+   
+    <div class="header-section d-flex align-items-center justify-content-between">
+    
+      <div class="text-content">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a> /
+          <a href="../continents/australia.html">Australia</a> /
+          <strong>Australian Space Agency</strong>
+        </div>
+        <h1 class="display-5 fw-bold">Australian Space Agency</h1>
+      </div>
+
+      <img src="../pictures/australian-space-agency.png"
+           alt="Australian Space Agency logo"
+           class="img-fluid rounded ms-4"
+           style="max-width:170px;">
+    </div>
+
+    <div class="content-box">
+      <h2>Australian Space Agency (ASA)</h2>
+      <p>
+        The Australian Space Agency is the national space agency of Australia. It was officially established on
+        1 July 2018 and is headquartered in Adelaide, South Australia. The agency was created to grow and
+        coordinate Australia’s civil space sector.
+      </p>
+      
+      <h3>Overview</h3>
+      <p>
+        The Australian Space Agency is responsible for developing national space policy, supporting the
+        growth of Australia’s space industry, and strengthening international partnerships. It works closely
+        with government, industry, and research organizations to advance space capabilities.
+      </p>
+
+      <h3>Key Responsibilities</h3>
+      <ul>
+        <li>Developing and implementing Australia’s national space strategy</li>
+        <li>Supporting commercial space industry growth</li>
+        <li>Regulating civil space activities in Australia</li>
+        <li>Promoting international cooperation with agencies such as NASA and ESA</li>
+      </ul>
+
+      <h3>Current Focus Areas</h3>
+      <p>
+        The agency focuses on areas such as satellite technology, space situational awareness,
+        Earth observation, robotics, and launch services. A key objective is to expand Australia’s
+        space economy and create high-skill jobs.
+      </p>
+
+      <h3>International Cooperation</h3>
+      <p>
+        The Australian Space Agency collaborates with international partners on scientific missions,
+        space exploration initiatives, and technology development. These partnerships help Australia
+        contribute to global space exploration while benefiting from shared expertise.
+      </p>
+    </div>
+
+    <footer>
+      <p>© Matthias Frei, Kilian Kager - 2CHIF WMC Projekt</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    fetch("sidebar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("sidebar-container").innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
