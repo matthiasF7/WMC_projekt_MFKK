@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" sizes="48x48" href="../pictures/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Zentrale CSS-Datei -->
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <title>OHB SE</title>
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header-section d-flex align-items-center justify-content-between">
+    
+    <div class="text-content">
+         <div class="breadcrumb">
+        <a href="../index.html">Home</a> / <a href="../continents/europe.html">Europe</a> / <strong>OHB SE</strong>
+      </div>
+      <h1 class="display-5 fw-bold">OHB SE</h1>
+      
+    </div>
+
+    <img src="../pictures/ohb-se-logo.png"
+         alt="OHB SE logo"
+         class="img-fluid rounded ms-4"
+         style="max-width:320px;">
+  </div>
+
+      <div class="content-box">
+        <h2>OHB SE</h2>
+        <p>
+          OHB SE is a European space and technology company headquartered in Bremen, Germany.
+          The company develops and builds satellites, space systems, and technological solutions
+          for both institutional and commercial customers.
+        </p>
+
+        <h3>Overview</h3>
+        <p>
+          Founded in 1981, OHB has grown into one of Europe's leading space companies.
+          The company works closely with the European Space Agency (ESA), national governments,
+          and commercial partners. OHB focuses on satellite development, space exploration
+          technologies, and security-related space systems.
+        </p>
+
+        <h3>Key Programs</h3>
+        <ul>
+          <li>
+            <strong>Galileo Satellites:</strong> OHB builds navigation satellites for the European Galileo navigation system.
+          </li>
+          <li>
+            <strong>Earth Observation Satellites:</strong> Development of satellites used for environmental monitoring, mapping, and climate research.
+          </li>
+          <li>
+            <strong>Exploration Systems:</strong> Participation in European exploration missions and scientific space projects.
+          </li>
+        </ul>
+
+        <h3>Mission Portfolio</h3>
+        <p>
+          OHB has contributed to several major European space projects, including navigation,
+          Earth observation, and space science missions. The company provides complete satellite
+          systems as well as individual components and payload technologies.
+        </p>
+
+        <h3>Future Direction</h3>
+        <p>
+          OHB continues to expand its role in European space programs, focusing on next-generation
+          satellite technologies, exploration missions, and commercial space applications.
+          The company also supports security and defense-related space infrastructure projects.
+        </p>
+      </div>
+
+      <footer>
+        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  fetch("sidebar.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    });
+</script>
+
+  </body>
+</html>
