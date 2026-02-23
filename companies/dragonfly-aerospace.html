@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="48x48" href="../pictures/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Zentrale CSS-Datei -->
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <title>Dragonfly Aerospace</title>
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header-section d-flex align-items-center justify-content-between">
+        <div class="text-content">
+          <div class="breadcrumb">
+            <a href="../index.html">Home</a> /
+            <a href="../continents/australia.html">Australia</a> /
+            <strong>Dragonfly Aerospace</strong>
+          </div>
+          <h1 class="display-5 fw-bold">
+            Dragonfly Aerospace
+          </h1>
+        </div>
+
+        <img
+          src="../pictures/dragonfly-logo.jpg"
+          alt="Dragonfly Aerospace logo"
+          class="img-fluid rounded ms-4"
+          style="max-width:390px;"
+        />
+      </div>
+
+      <div class="content-box">
+        <h2>Dragonfly Aerospace</h2>
+        <p>
+          Dragonfly Aerospace is an Australian space technology company
+          dedicated to developing innovative solutions for commercial
+          spaceflight and satellite operations. The company specializes
+          in advanced aerospace engineering and develops cutting-edge
+          technologies for the global space industry.
+        </p>
+
+        <h3>Overview</h3>
+        <p>
+          Dragonfly Aerospace focuses on designing and manufacturing
+          high-performance spacecraft systems, propulsion technologies,
+          and space infrastructure. The company works closely with
+          government agencies, commercial operators, and international
+          partners to advance Australia's position in the space sector.
+        </p>
+
+        <h3>Core Activities</h3>
+        <ul>
+          <li>
+            <strong>Spacecraft Development:</strong> Design and
+            manufacturing of advanced satellites and space vehicles
+          </li>
+          <li>
+            <strong>Propulsion Systems:</strong> Development of efficient
+            and reliable propulsion technologies for space applications
+          </li>
+          <li>
+            <strong>Space Infrastructure:</strong> Ground stations and
+            support systems for satellite operations and communications
+          </li>
+        </ul>
+
+        <h3>Mission Portfolio</h3>
+        <p>
+          Dragonfly Aerospace has undertaken various projects supporting
+          commercial satellite deployment, Earth observation missions,
+          and deep-space exploration. The company provides critical
+          technology and services for both national and international
+          space programs.
+        </p>
+
+        <h3>Future Direction</h3>
+        <p>
+          The company aims to expand Australia's independent space
+          capabilities through continued innovation in spacecraft design,
+          reusable launch systems, and autonomous space operations.
+          Dragonfly Aerospace is committed to strengthening Australia's
+          role in the global commercial space economy.
+        </p>
+      </div>
+
+      <footer>
+        <p>© Matthias Frei, Kilian Kager 2CHIF WMC Projekt</p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  fetch("sidebar.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("sidebar-container").innerHTML = html;
+    });
+</script>
+
+
+  </body>
+</html>
