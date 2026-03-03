@@ -2,6 +2,10 @@
 
 ## **Spaceflight companies**
 
+## **1. Wep Apllication**
+
+New page where you can see satelittes around a globe.
+
 ## **2. Project Idea**
 
 Website with information about Spaceflight companies, their history and the future of them.
