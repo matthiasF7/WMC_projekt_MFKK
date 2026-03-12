@@ -17,3 +17,34 @@ viewer.camera.setView({
 });
 
 
+const user = viewer.entities.add({
+  position: Cesium.Cartesian3.fromDegrees(0, 0),
+  point: {
+    pixelSize: 10,
+    color: Cesium.Color.WHITE,
+    heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
+  },
+  label: {
+    text: "Standort",             
+    font: "14px sans-serif",
+    fillColor: Cesium.Color.BLACK,
+    outlineColor: Cesium.Color.WHITE,
+    outlineWidth: 2,
+    pixelOffset: new Cesium.Cartesian2(0, 0), 
+    verticalOrigin: Cesium.VerticalOrigin.CENTER, 
+    horizontalOrigin: Cesium.HorizontalOrigin.CENTER
+  }
+});
+
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition(
+    p => {
+      const { latitude: lat, longitude: lon, altitude: alt = 0 } = p.coords;
+      user.position = Cesium.Cartesian3.fromDegrees(lon, lat, alt);
+    },
+    e => console.error("Geo‑Fehler:", e),
+    { enableHighAccuracy: true }
+  );
+} else {
+  console.warn("Geolocation nicht verfügbar");
+}
