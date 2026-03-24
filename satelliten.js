@@ -97,5 +97,38 @@ satellites.push({
   entity: iss,
   satrec: issSatrec
 });
+
+// ---------------- Satelliten laden ----------------
+ 
+loadSatellites("https://celestrak.org/NORAD/elements/stations.txt");
+loadSatellites("https://celestrak.org/NORAD/elements/gps-ops.txt");
+loadSatellites("https://celestrak.org/NORAD/elements/weather.txt");
+loadSatellites("https://celestrak.org/NORAD/elements/science.txt");
+loadSatellites("https://celestrak.org/NORAD/elements/starlink.txt");
+ 
+ 
+function loadSatellites(url){
+ 
+fetch(url)
+.then(res => res.text())
+.then(data => {
+ 
+  const lines = data.split("\n");
+ 
+  for (let i = 0; i < lines.length; i += 3) {
+ 
+    const name = lines[i]?.trim();
+    const line1 = lines[i+1];
+    const line2 = lines[i+2];
+ 
+    if(!name || !line1 || !line2) continue;
+ 
+    createSatellite(name, line1, line2);
+ 
+  }
+ 
+});
+ 
+}
  
  
