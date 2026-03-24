@@ -16,7 +16,7 @@ function getCategory(name) {
   const n = name.toUpperCase();
 
   if (n.includes("ISS")) return "ISS";
-  if (n.includes("STARLINK")) return "STARLINK"; // wichtig
+  if (n.includes("STARLINK")) return "STARLINK";
   if (n.includes("GPS")) return "GPS";
   if (n.includes("WEATHER") || n.includes("METEOR")) return "WEATHER";
   if (n.includes("SCIENCE") || n.includes("HUBBLE")) return "SCIENCE";
@@ -202,7 +202,6 @@ function loadSatellites(url) {
         createSatellite(name, line1, line2);
       }
 
-      // WICHTIG: nach Laden direkt Filter anwenden
       updateVisibility();
     });
 }
