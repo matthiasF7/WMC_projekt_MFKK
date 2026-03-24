@@ -48,3 +48,54 @@ if (navigator.geolocation) {
 } else {
   console.warn("Geolocation nicht verfügbar");
 }
+
+
+// ---------------- ISS ----------------
+ 
+const tleLine1 = "1 25544U 98067A   24060.51097222  .00016717  00000+0  10270-3 0  9995";
+const tleLine2 = "2 25544  51.6434  60.6281 0004603  69.0391  58.7952 15.50011655439670";
+const issSatrec = satellite.twoline2satrec(tleLine1, tleLine2);
+ 
+function getISSPosition() {
+ 
+  const now = new Date();
+  const pv = satellite.propagate(issSatrec, now);
+  const gmst = satellite.gstime(now);
+ 
+  const pos = satellite.eciToEcf(pv.position, gmst);
+ 
+  return Cesium.Cartesian3.fromElements(
+    pos.x * 1000,
+    pos.y * 1000,
+    pos.z * 1000
+  );
+}
+ 
+const iss = viewer.entities.add({
+  name: "ISS (International Space Station)",
+ 
+  position: new Cesium.CallbackProperty(() => {
+    return getISSPosition();
+  }, false),
+ 
+  point: {
+    pixelSize: 8,
+    color: Cesium.Color.RED
+  },
+ 
+  label: {
+    text: "ISS",
+    font: "14px sans-serif",
+    fillColor: Cesium.Color.WHITE,
+    style: Cesium.LabelStyle.FILL_AND_OUTLINE
+  },
+ 
+  description: createSatelliteInfo("ISS", tleLine1, tleLine2)
+});
+ 
+satellites.push({
+  entity: iss,
+  satrec: issSatrec
+});
+ 
+ 
