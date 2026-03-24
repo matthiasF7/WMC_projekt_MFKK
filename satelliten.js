@@ -132,3 +132,51 @@ fetch(url)
 }
  
  
+// ---------------- Satellit erstellen ----------------
+ 
+function createSatellite(name, line1, line2) {
+ 
+  const satrec = satellite.twoline2satrec(line1, line2);
+ 
+  function getPosition() {
+ 
+    const now = new Date();
+    const pv = satellite.propagate(satrec, now);
+ 
+    if (!pv.position) return;
+ 
+    const gmst = satellite.gstime(now);
+    const pos = satellite.eciToEcf(pv.position, gmst);
+ 
+    return new Cesium.Cartesian3(
+      pos.x * 1000,
+      pos.y * 1000,
+      pos.z * 1000
+    );
+  }
+ 
+  const entity = viewer.entities.add({
+ 
+    name: name,
+ 
+    position: new Cesium.CallbackProperty(() => {
+      return getPosition();
+    }, false),
+ 
+    point: {
+      pixelSize: 6,
+      color: Cesium.Color.YELLOW
+    },
+ 
+    description: createSatelliteInfo(name, line1, line2)
+ 
+  });
+ 
+  satellites.push({
+    entity: entity,
+    satrec: satrec
+  });
+ 
+}
+ 
+ 
