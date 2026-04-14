@@ -203,7 +203,7 @@ footer {
 #cesiumContainer {
   flex: 1;
   min-height: 0;
-}
+
   backdrop-filter: blur(3px);
 }
 
