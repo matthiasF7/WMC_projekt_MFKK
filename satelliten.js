@@ -249,3 +249,126 @@ function createSatellite(name, line1, line2) {
     category: category
   });
 }
+
+//---------------- Orbitlinie ----------------
+ 
+const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+ 
+handler.setInputAction(function(click) {
+ 
+  const pickedObject = viewer.scene.pick(click.position);
+ 
+  if (!pickedObject) return;
+ 
+  const entity = pickedObject.id;
+ 
+  const sat = satellites.find(s => s.entity === entity);
+ 
+  if (!sat) return;
+ 
+  showOrbit(sat.satrec);
+ 
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+ 
+ 
+ 
+function showOrbit(satrec) {
+ 
+  if (orbitLine) {
+    viewer.entities.remove(orbitLine);
+  }
+ 
+  const positions = [];
+  const now = new Date();
+ 
+  for (let i = 0; i < 120; i++) {
+ 
+    const time = new Date(now.getTime() + i * 60000);
+    const pv = satellite.propagate(satrec, time);
+ 
+    if (!pv.position) continue;
+ 
+    const gmst = satellite.gstime(time);
+    const pos = satellite.eciToEcf(pv.position, gmst);
+ 
+    positions.push(
+      new Cesium.Cartesian3(
+        pos.x * 1000,
+        pos.y * 1000,
+        pos.z * 1000
+      )
+    );
+  }
+ 
+  if (positions.length < 2) return;
+ 
+  orbitLine = viewer.entities.add({
+    polyline: {
+      positions: positions,
+      width: 1,
+      material: Cesium.Color.CYAN
+    }
+  });
+ 
+}
+ 
+ 
+ 
+// ---------------- Infos ----------------
+ 
+function createSatelliteInfo(name, line1, line2) {
+ 
+  const year = getLaunchYear(line1);
+  const orbit = getOrbitType(line2);
+ 
+  let purpose = "Unbekannt";
+ 
+  const n = name.toUpperCase();
+ 
+  if (n.includes("ISS")) purpose = "Raumstation";
+  else if (n.includes("STARLINK")) purpose = "Internet-Satellit";
+  else if (n.includes("GPS")) purpose = "Navigation";
+  else if (n.includes("WEATHER")) purpose = "Wettersatellit";
+  else if (n.includes("METEOR")) purpose = "Wettersatellit";
+  else if (n.includes("HUBBLE")) purpose = "Weltraumteleskop";
+  else if (n.includes("SCIENCE")) purpose = "Forschung";
+ 
+  return `
+  <h3>${name}</h3>
+  <table>
+    <tr><td>Zweck</td><td>${purpose}</td></tr>
+    <tr><td>Startjahr</td><td>${year}</td></tr>
+    <tr><td>Orbittyp</td><td>${orbit}</td></tr>
+    <tr><td>Datenquelle</td><td>CelesTrak</td></tr>
+  </table>
+  `;
+}
+ 
+ 
+ 
+// ---------------- Orbittyp ----------------
+ 
+function getOrbitType(line2){
+ 
+const meanMotion=parseFloat(line2.substring(52,63));
+ 
+if(meanMotion>11) return "Low Earth Orbit (LEO)";
+if(meanMotion>2) return "Medium Earth Orbit (MEO)";
+return "Geostationary Orbit (GEO)";
+ 
+}
+ 
+ 
+ 
+// ---------------- Startjahr ----------------
+ 
+function getLaunchYear(line1){
+ 
+let year=parseInt(line1.substring(9,11));
+ 
+if(year<57) year=2000+year;
+else year=1900+year;
+ 
+return year;
+ 
+}
