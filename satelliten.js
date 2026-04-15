@@ -169,7 +169,9 @@ const iss = viewer.entities.add({
     text: "ISS",
     font: "14px sans-serif",
     fillColor: Cesium.Color.WHITE
-  }
+  },
+
+  show: true
 });
 
 satellites.push({
@@ -236,8 +238,16 @@ function createSatellite(name, line1, line2) {
     }, false),
 
     point: {
-      pixelSize: 6,
+      pixelSize: 8,
       color: categories[category].color
+    },
+
+    label: {
+      text: name,
+      font: "12px sans-serif",
+      fillColor: Cesium.Color.WHITE,
+      pixelOffset: new Cesium.Cartesian2(0, -12),
+      horizontalOrigin: Cesium.HorizontalOrigin.CENTER
     },
 
     show: categories[category].visible
