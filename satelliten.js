@@ -98,6 +98,9 @@ viewer.camera.setView({
   destination: Cesium.Cartesian3.fromDegrees(10, 50, 20000000)
 });
 
+console.log("✓ Cesium initialisiert");
+console.log("✓ satellite.js verfügbar:", typeof satellite !== 'undefined');
+
 createCategoryUI();
 
 // ---------------- Standort ----------------
@@ -180,6 +183,8 @@ satellites.push({
 
 // ---------------- Satelliten laden ----------------
 
+console.log("Starte Laden der Satelliten...");
+
 loadSatellites("https://celestrak.org/NORAD/elements/stations.txt");
 loadSatellites("https://celestrak.org/NORAD/elements/gps-ops.txt");
 loadSatellites("https://celestrak.org/NORAD/elements/weather.txt");
@@ -190,7 +195,9 @@ function loadSatellites(url) {
   fetch(url)
     .then(res => res.text())
     .then(data => {
+      console.log(`✓ Geladen: ${url}, ${data.length} Zeichen`);
       const lines = data.split("\n");
+      let count = 0;
 
       for (let i = 0; i < lines.length; i += 3) {
         const name = lines[i]?.trim();
@@ -199,33 +206,56 @@ function loadSatellites(url) {
 
         if (!name || !line1 || !line2) continue;
 
-        createSatellite(name, line1, line2);
+        try {
+          createSatellite(name, line1, line2);
+          count++;
+        } catch (e) {
+          console.error(`Fehler bei ${name}:`, e);
+        }
       }
 
+      console.log(`${count} Satelliten aus ${url} erstellt`);
       updateVisibility();
-    });
+    })
+    .catch(err => console.error(`Fehler beim Laden ${url}:`, err));
 }
 
 // ---------------- Satellit erstellen ----------------
 
 function createSatellite(name, line1, line2) {
 
-  const satrec = satellite.twoline2satrec(line1, line2);
+  let satrec;
+  try {
+    satrec = satellite.twoline2satrec(line1, line2);
+  } catch (e) {
+    console.error(`Ungültige TLE für ${name}:`, e);
+    return;
+  }
+
+  if (satrec.error) {
+    console.warn(`TLE Error für ${name}: ${satrec.error}`);
+    return;
+  }
+
   const category = getCategory(name);
 
   function getPosition() {
     const now = new Date();
-    const pv = satellite.propagate(satrec, now);
-    if (!pv.position) return;
+    try {
+      const pv = satellite.propagate(satrec, now);
+      if (!pv.position) return null;
 
-    const gmst = satellite.gstime(now);
-    const pos = satellite.eciToEcf(pv.position, gmst);
+      const gmst = satellite.gstime(now);
+      const pos = satellite.eciToEcf(pv.position, gmst);
 
-    return new Cesium.Cartesian3(
-      pos.x * 1000,
-      pos.y * 1000,
-      pos.z * 1000
-    );
+      return new Cesium.Cartesian3(
+        pos.x * 1000,
+        pos.y * 1000,
+        pos.z * 1000
+      );
+    } catch (e) {
+      return null;
+    }
   }
 
   const entity = viewer.entities.add({
