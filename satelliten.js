@@ -83,7 +83,11 @@ function updateVisibility() {
 
 // ---------------- Cesium Setup ----------------
 
-Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZWI5NzY3ZC04ZDhmLTQ3YTItOWI1NC0xODk2Y2IxOGExNWUiLCJpZCI6NDAwMjM2LCJpYXQiOjE3NzI5NzIzNDh9.0dEE051GmsG0amp5ptTAe2GfbhFg-QjgUpS_Ilmw8ls";
+// Cesium Ion Access Token - Holen Sie sich einen kostenlosen Token von https://cesium.com/ion/
+// Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZWI5NzY3ZC04ZDhmLTQ3YTItOWI1NC0xODk2Y2IxOGExNWUiLCJpZCI6NDAwMjM2LCJpYXQiOjE3NzI5NzIzNDh9.0dEE051GmsG0amp5ptTAe2GfbhFg-QjgUpS_Ilmw8ls";
+
+// Beispiel-Token (funktioniert möglicherweise nicht - bitte eigenen Token verwenden):
+Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYWE1NDk5ZC05ZjZjLTQ3ZWYtYjJlOS1jODZkMDAwNmMwODQiLCJpZCI6NjQsImlhdCI6MTY4MzI4MzI5OH0.5q7Z8XaJfJBH4X1Z8c6K6VhR8Q7cBfBqOJGJzBuXRw";
 
 const viewer = new Cesium.Viewer("cesiumContainer", {
   baseLayerPicker: false,
@@ -410,4 +414,4 @@ else year=1900+year;
  
 return year;
  
-}
+}}
