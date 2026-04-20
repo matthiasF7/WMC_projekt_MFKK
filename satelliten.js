@@ -132,8 +132,10 @@ if (navigator.geolocation) {
 
 // ---------------- ISS ----------------
 
+
 const tleLine1 = "1 25544U 98067A   24060.51097222  .00016717  00000+0  10270-3 0  9995";
 const tleLine2 = "2 25544  51.6434  60.6281 0004603  69.0391  58.7952 15.50011655439670";
+console.log("satellite:", typeof satellite, satellite);
 const issSatrec = satellite.twoline2satrec(tleLine1, tleLine2);
 
 function getISSPosition() {
