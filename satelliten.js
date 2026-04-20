@@ -86,8 +86,6 @@ function updateVisibility() {
 Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZWI5NzY3ZC04ZDhmLTQ3YTItOWI1NC0xODk2Y2IxOGExNWUiLCJpZCI6NDAwMjM2LCJpYXQiOjE3NzI5NzIzNDh9.0dEE051GmsG0amp5ptTAe2GfbhFg-QjgUpS_Ilmw8ls";
 
 const viewer = new Cesium.Viewer("cesiumContainer", {
-  baseLayer: Cesium.ImageryLayer.fromWorldImagery(),
-  terrainProvider: new Cesium.EllipsoidTerrainProvider(),
   baseLayerPicker: false,
   geocoder: false,
   timeline: false,
@@ -137,8 +135,10 @@ if (navigator.geolocation) {
 
 // ---------------- ISS ----------------
 
+
 const tleLine1 = "1 25544U 98067A   24060.51097222  .00016717  00000+0  10270-3 0  9995";
 const tleLine2 = "2 25544  51.6434  60.6281 0004603  69.0391  58.7952 15.50011655439670";
+console.log("satellite:", typeof satellite, satellite);
 const issSatrec = satellite.twoline2satrec(tleLine1, tleLine2);
 
 function getISSPosition() {
@@ -172,7 +172,9 @@ const iss = viewer.entities.add({
     text: "ISS",
     font: "14px sans-serif",
     fillColor: Cesium.Color.WHITE
-  }
+  },
+
+  show: true
 });
 
 satellites.push({
@@ -217,9 +219,8 @@ function loadSatellites(url) {
       console.log(`${count} Satelliten aus ${url} erstellt`);
       updateVisibility();
     })
-    .catch(err => console.error(`Fehler beim Laden ${url}:`, err));
-}
 
+    .catch(err => console.error(`Failed to load satellites (${url}):`, err));
 // ---------------- Satellit erstellen ----------------
 
 function createSatellite(name, line1, line2) {
@@ -266,8 +267,16 @@ function createSatellite(name, line1, line2) {
     }, false),
 
     point: {
-      pixelSize: 6,
+      pixelSize: 8,
       color: categories[category].color
+    },
+
+    label: {
+      text: name,
+      font: "12px sans-serif",
+      fillColor: Cesium.Color.WHITE,
+      pixelOffset: new Cesium.Cartesian2(0, -12),
+      horizontalOrigin: Cesium.HorizontalOrigin.CENTER
     },
 
     show: categories[category].visible
