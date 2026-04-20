@@ -22,6 +22,9 @@
   </div>
 
   <!-- JavaScript -->
+<!-- satellite.js - mit mehreren CDN-Optionen -->
+<script src="https://cdn.jsdelivr.net/npm/satellite.js@4.0.0/dist/satellite.min.js"></script>
+<!-- Fallback -->
 <script src="https://unpkg.com/satellite.js/dist/satellite.min.js"></script>
 <script src="satelliten.js"></script>
 <style>
@@ -37,5 +40,24 @@
     height: 100vh !important;
   }
 </style>
+
+<script>
+  // Überprüfe ob Scripts geladen sind
+  window.addEventListener('load', function() {
+    console.log("Page loaded");
+    console.log("Cesium:", typeof Cesium);
+    console.log("satellite:", typeof satellite);
+  });
+  
+  // Überprüfe regelmäßig
+  setTimeout(() => {
+    console.log("Nach 2s - satellite:", typeof satellite);
+  }, 2000);
+  
+  // Error Handler
+  window.addEventListener('error', function(e) {
+    console.error("Error:", e.message);
+  });
+</script>
 </body>
 </html>

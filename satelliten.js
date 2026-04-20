@@ -83,40 +83,49 @@ function updateVisibility() {
 
 // ---------------- Cesium Setup ----------------
 
-// Cesium Setup mit OpenStreetMap (kostenlos, kein Token nötig)
+// Cesium Setup - Einfach und zuverlässig
 let viewer;
-try {
-  viewer = new Cesium.Viewer("cesiumContainer", {
-    baseLayerPicker: false,
-    geocoder: false,
-    timeline: false,
-    animation: false,
-    // Bing Maps (kostenlos, kein Token nötig)
-    imageryProvider: new Cesium.BingMapsImageryProvider({
-      url: 'https://dev.virtualearth.net',
-      mapStyle: Cesium.BingMapsStyle.AERIAL
-    })
-  });
-  console.log("✓ Cesium mit Bing Maps initialisiert");
-} catch (e) {
-  console.error("❌ Fehler bei Cesium-Initialisierung:", e);
-  // Fallback: Viewer ohne Imagery Provider
-  viewer = new Cesium.Viewer("cesiumContainer", {
-    baseLayerPicker: false,
-    geocoder: false,
-    timeline: false,
-    animation: false
-  });
-}
+console.log("Initialisiere Cesium...");
 
-viewer.camera.setView({
-  destination: Cesium.Cartesian3.fromDegrees(10, 50, 20000000)
-});
-
-console.log("✓ Cesium initialisiert");
-console.log("✓ satellite.js verfügbar:", typeof satellite !== 'undefined');
-console.log("Viewer:", viewer);
-console.log("cesiumContainer:", document.getElementById("cesiumContainer"));
+// Warte bis DOM bereit ist
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    const container = document.getElementById("cesiumContainer");
+    console.log("cesiumContainer gefunden:", !!container);
+    console.log("Container Größe:", container?.offsetWidth, "x", container?.offsetHeight);
+    
+    viewer = new Cesium.Viewer("cesiumContainer", {
+      baseLayerPicker: false,
+      geocoder: false,
+      timeline: false,
+      animation: false,
+      sceneMode: Cesium.SceneMode.SCENE3D,
+      scene3DOnly: false
+    });
+    
+    console.log("✓ Cesium Viewer erstellt");
+    
+    // Kamera positionieren
+    viewer.camera.setView({
+      destination: Cesium.Cartesian3.fromDegrees(0, 20, 20000000),
+      orientation: {
+        heading: 0,
+        pitch: -45,
+        roll: 0
+      }
+    });
+    
+    console.log("✓ Cesium vollständig initialisiert");
+    console.log("✓ satellite.js verfügbar:", typeof satellite !== 'undefined');
+    
+  } catch (e) {
+    console.error("❌ Fehler bei Cesium-Initialisierung:", e);
+    const container = document.getElementById("cesiumContainer");
+    if (container) {
+      container.innerHTML = "<div style='color: red; padding: 20px;'>Fehler: " + e.message + "</div>";
+    }
+  }
+}, { once: true });
 
 // Debug-Info auf der Seite anzeigen
 function updateDebugInfo() {
@@ -133,157 +142,160 @@ function updateDebugInfo() {
 
 setInterval(updateDebugInfo, 1000);
 
-createCategoryUI();
-
-// ---------------- Standort ----------------
-
-const user = viewer.entities.add({
-  position: Cesium.Cartesian3.fromDegrees(0, 0),
-  point: {
-    pixelSize: 10,
-    color: Cesium.Color.WHITE,
-    heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
-  },
-  label: {
-    text: "Standort",
-    font: "14px sans-serif",
-    fillColor: Cesium.Color.BLACK,
-    outlineColor: Cesium.Color.WHITE,
-    outlineWidth: 2,
-    pixelOffset: new Cesium.Cartesian2(0, 0),
-    verticalOrigin: Cesium.VerticalOrigin.CENTER,
-    horizontalOrigin: Cesium.HorizontalOrigin.CENTER
+// Alles Weitere wird initialisiert, wenn Viewer bereit ist
+function initializeAfterViewer() {
+  if (!viewer) {
+    console.error("Viewer noch nicht initialisiert");
+    setTimeout(initializeAfterViewer, 500);
+    return;
   }
-});
+  
+  // Warte auf satellite.js
+  if (typeof satellite === 'undefined') {
+    console.log("Warte auf satellite.js...");
+    setTimeout(initializeAfterViewer, 500);
+    return;
+  }
+  
+  console.log("Starte Viewer-abhängige Initialisierung...");
+  console.log("satellite.js ist jetzt verfügbar:", typeof satellite);
+  
+  createCategoryUI();
 
-if (navigator.geolocation) {
-  navigator.geolocation.watchPosition(
-    p => {
-      const { latitude: lat, longitude: lon, altitude: alt = 0 } = p.coords;
-      user.position = Cesium.Cartesian3.fromDegrees(lon, lat, alt);
+  // ---------------- Standort ----------------
+
+  const user = viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(0, 0),
+    point: {
+      pixelSize: 10,
+      color: Cesium.Color.WHITE,
+      heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
     },
-    e => console.error("Geo-Fehler:", e),
-    { enableHighAccuracy: true }
-  );
-}
+    label: {
+      text: "Standort",
+      font: "14px sans-serif",
+      fillColor: Cesium.Color.BLACK,
+      outlineColor: Cesium.Color.WHITE,
+      outlineWidth: 2,
+      pixelOffset: new Cesium.Cartesian2(0, 0),
+      verticalOrigin: Cesium.VerticalOrigin.CENTER,
+      horizontalOrigin: Cesium.HorizontalOrigin.CENTER
+    }
+  });
 
-// ---------------- ISS ----------------
-
-
-const tleLine1 = "1 25544U 98067A   24060.51097222  .00016717  00000+0  10270-3 0  9995";
-const tleLine2 = "2 25544  51.6434  60.6281 0004603  69.0391  58.7952 15.50011655439670";
-console.log("satellite:", typeof satellite, satellite);
-const issSatrec = satellite.twoline2satrec(tleLine1, tleLine2);
-
-function getISSPosition() {
-  const now = new Date();
-  const pv = satellite.propagate(issSatrec, now);
-  const gmst = satellite.gstime(now);
-  const pos = satellite.eciToEcf(pv.position, gmst);
-
-  return Cesium.Cartesian3.fromElements(
-    pos.x * 1000,
-    pos.y * 1000,
-    pos.z * 1000
-  );
-}
-
-const issCategory = "ISS";
-
-const iss = viewer.entities.add({
-  name: "ISS",
-
-  position: new Cesium.CallbackProperty(() => {
-    return getISSPosition();
-  }, false),
-
-  point: {
-    pixelSize: 8,
-    color: categories[issCategory].color
-  },
-
-  label: {
-    text: "ISS",
-    font: "14px sans-serif",
-    fillColor: Cesium.Color.WHITE
-  },
-
-  show: true
-});
-
-satellites.push({
-  entity: iss,
-  satrec: issSatrec,
-  category: issCategory
-});
-
-// ---------------- Satelliten laden ----------------
-
-console.log("Starte Laden der Satelliten...");
-
-const sources = [
-  "https://celestrak.org/NORAD/elements/stations.txt",
-  "https://celestrak.org/NORAD/elements/gps-ops.txt",
-  "https://celestrak.org/NORAD/elements/weather.txt",
-  "https://celestrak.org/NORAD/elements/science.txt",
-  "https://celestrak.org/NORAD/elements/starlink.txt"
-];
-
-let loadedCount = 0;
-
-function loadSatellites(url) {
-  console.log(`Lade: ${url}`);
-  fetch(url)
-    .then(res => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.text();
-    })
-    .then(data => {
-      console.log(`✓ Geladen: ${url}, ${data.length} Zeichen`);
-      const lines = data.split("\n");
-      let count = 0;
-
-      for (let i = 0; i < lines.length; i += 3) {
-        const name = lines[i]?.trim();
-        const line1 = lines[i + 1];
-        const line2 = lines[i + 2];
-
-        if (!name || !line1 || !line2) continue;
-
-        try {
-          createSatellite(name, line1, line2);
-          count++;
-        } catch (e) {
-          console.error(`Fehler bei ${name}:`, e);
-        }
-      }
-
-      console.log(`${count} Satelliten aus ${url} erstellt`);
-      loadedCount += count;
-      console.log(`Gesamt bisher: ${loadedCount} Satelliten`);
-      updateVisibility();
-    })
-    .catch(err => {
-      console.error(`❌ Fehler beim Laden (${url}):`, err);
-    });
-}
-
-// Starte Laden aller Quellen
-sources.forEach(url => loadSatellites(url));
-
-// Test: Ein Starlink-Satellit lokal hinzufügen zum Testen
-setTimeout(() => {
-  console.log("\n=== TEST: Füge Test-Starlink-Satellit hinzu ===");
-  try {
-    const testName = "STARLINK-1130";
-    const testLine1 = "1 44713U 19074BJ  24060.51234568  .00003654  00000-0  22846-3 0  9998";
-    const testLine2 = "2 44713  53.0544 105.6304 0001445  97.1835 262.9391 15.48916393198274";
-    createSatellite(testName, testLine1, testLine2);
-    console.log("✓ Test-Satellit erstellt");
-  } catch (e) {
-    console.error("❌ Fehler bei Test-Satellit:", e);
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(
+      p => {
+        const { latitude: lat, longitude: lon, altitude: alt = 0 } = p.coords;
+        user.position = Cesium.Cartesian3.fromDegrees(lon, lat, alt);
+      },
+      e => console.error("Geo-Fehler:", e),
+      { enableHighAccuracy: true }
+    );
   }
-}, 1000);
+
+  // ISS mit aktuellem Datum laden
+  const now = new Date();
+  const tleLine1 = "1 25544U 98067A   " + formatTLEDate(now) + "  .00016717  00000+0  10270-3 0  9995";
+  const tleLine2 = "2 25544  51.6434  60.6281 0004603  69.0391  58.7952 15.50011655439670";
+  console.log("ISS TLE:", tleLine1);
+  
+  let issSatrec;
+  try {
+    issSatrec = satellite.twoline2satrec(tleLine1, tleLine2);
+  } catch (e) {
+    console.error("❌ Fehler beim Laden der ISS TLE:", e);
+    return;
+  }
+  
+  const issCategory = "ISS";
+  
+  const iss = viewer.entities.add({
+    name: "ISS",
+    position: new Cesium.CallbackProperty(() => {
+      const now = new Date();
+      try {
+        const pv = satellite.propagate(issSatrec, now);
+        if (!pv.position) return null;
+        const gmst = satellite.gstime(now);
+        const pos = satellite.eciToEcf(pv.position, gmst);
+        return Cesium.Cartesian3.fromElements(pos.x * 1000, pos.y * 1000, pos.z * 1000);
+      } catch (e) {
+        console.error("Fehler bei ISS-Position:", e);
+        return null;
+      }
+    }, false),
+    point: {
+      pixelSize: 8,
+      color: categories[issCategory].color
+    },
+    label: {
+      text: "ISS",
+      font: "14px sans-serif",
+      fillColor: Cesium.Color.WHITE
+    },
+    show: true
+  });
+
+  satellites.push({
+    entity: iss,
+    satrec: issSatrec,
+    category: issCategory
+  });
+  
+  console.log("ISS hinzugefügt");
+  
+  // Initialisiere Orbit-Handler
+  initOrbitHandler();
+  
+  // Starte Laden der Satelliten
+  startLoadingSatellites();
+}
+
+function formatTLEDate(date) {
+  const year = date.getFullYear().toString().slice(-2);
+  const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+  const dayStr = dayOfYear.toString().padStart(3, '0');
+  const fraction = (date.getHours() + date.getMinutes()/60 + date.getSeconds()/3600) / 24;
+  const fractionStr = Math.floor(fraction * 100000).toString().padStart(5, '0');
+  return year + dayStr + '.' + fractionStr;
+}
+
+// Starte wenn DOMContentLoaded
+setTimeout(initializeAfterViewer, 100);
+
+// Laden von Satelliten aus URL
+function startLoadingSatellites() {
+  console.log("Starte Laden der Satelliten...");
+  
+  const sources = [
+    "https://celestrak.org/NORAD/elements/stations.txt",
+    "https://celestrak.org/NORAD/elements/gps-ops.txt",
+    "https://celestrak.org/NORAD/elements/weather.txt",
+    "https://celestrak.org/NORAD/elements/science.txt",
+    "https://celestrak.org/NORAD/elements/starlink.txt"
+  ];
+  
+  sources.forEach(url => loadSatellites(url));
+  
+  // Test: Ein Starlink-Satellit lokal hinzufügen zum Testen
+  setTimeout(() => {
+    console.log("\n=== TEST: Füge Test-Starlink-Satellit hinzu ===");
+    try {
+      if (typeof satellite === 'undefined') {
+        console.error("satellite.js nicht verfügbar für Test");
+        return;
+      }
+      const testName = "STARLINK-1130";
+      const testLine1 = "1 44713U 19074BJ  24060.51234568  .00003654  00000-0  22846-3 0  9998";
+      const testLine2 = "2 44713  53.0544 105.6304 0001445  97.1835 262.9391 15.48916393198274";
+      createSatellite(testName, testLine1, testLine2);
+      console.log("✓ Test-Satellit erstellt");
+    } catch (e) {
+      console.error("❌ Fehler bei Test-Satellit:", e);
+    }
+  }, 1000);
+}
 // ---------------- Satellit erstellen ----------------
 
 function createSatellite(name, line1, line2) {
@@ -351,25 +363,65 @@ function createSatellite(name, line1, line2) {
   }
 }
 
+// Laden von Satelliten aus URL
+function loadSatellites(url) {
+  if (typeof satellite === 'undefined') {
+    console.error("satellite.js nicht verfügbar");
+    return;
+  }
+  
+  console.log(`Lade: ${url}`);
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.text();
+    })
+    .then(data => {
+      console.log(`✓ Geladen: ${url}, ${data.length} Zeichen`);
+      const lines = data.split("\n");
+      let count = 0;
+
+      for (let i = 0; i < lines.length; i += 3) {
+        const name = lines[i]?.trim();
+        const line1 = lines[i + 1];
+        const line2 = lines[i + 2];
+
+        if (!name || !line1 || !line2) continue;
+
+        try {
+          createSatellite(name, line1, line2);
+          count++;
+        } catch (e) {
+          console.error(`Fehler bei ${name}:`, e);
+        }
+      }
+
+      console.log(`${count} Satelliten aus ${url} erstellt`);
+      updateVisibility();
+    })
+    .catch(err => {
+      console.error(`❌ Fehler beim Laden (${url}):`, err);
+    });
+}
+
 //---------------- Orbitlinie ----------------
- 
-const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
- 
-handler.setInputAction(function(click) {
- 
-  const pickedObject = viewer.scene.pick(click.position);
- 
-  if (!pickedObject) return;
- 
-  const entity = pickedObject.id;
- 
-  const sat = satellites.find(s => s.entity === entity);
- 
-  if (!sat) return;
- 
-  showOrbit(sat.satrec);
- 
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+function initOrbitHandler() {
+  if (!viewer) return;
+  
+  const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  
+  handler.setInputAction(function(click) {
+    const pickedObject = viewer.scene.pick(click.position);
+    if (!pickedObject) return;
+    
+    const entity = pickedObject.id;
+    const sat = satellites.find(s => s.entity === entity);
+    
+    if (!sat) return;
+    showOrbit(sat.satrec);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+}
  
  
  
