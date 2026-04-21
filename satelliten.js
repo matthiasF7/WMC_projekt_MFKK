@@ -97,8 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Container Größe:", container?.offsetWidth, "x", container?.offsetHeight);
     
     viewer = new Cesium.Viewer("cesiumContainer", {
+
       terrainProvider: new Cesium.EllipsoidTerrainProvider(),
-      
+      baseLayerPicker: false,
+      vrButton: false,
+      infoBox: false,
       geocoder: false,
       timeline: false,
       animation: false,
