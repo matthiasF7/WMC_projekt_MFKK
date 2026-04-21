@@ -1,6 +1,8 @@
 const satellites = [];
 let orbitLine = null;
 
+Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZWI5NzY3ZC04ZDhmLTQ3YTItOWI1NC0xODk2Y2IxOGExNWUiLCJpZCI6NDAwMjM2LCJpYXQiOjE3NzI5NzIzNDh9.0dEE051GmsG0amp5ptTAe2GfbhFg-QjgUpS_Ilmw8ls";
+
 // ---------------- Kategorien ----------------
 
 const categories = {
@@ -95,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Container Größe:", container?.offsetWidth, "x", container?.offsetHeight);
     
     viewer = new Cesium.Viewer("cesiumContainer", {
-      baseLayerPicker: false,
+      terrainProvider: new Cesium.EllipsoidTerrainProvider(),
+      
       geocoder: false,
       timeline: false,
       animation: false,
