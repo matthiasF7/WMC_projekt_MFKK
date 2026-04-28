@@ -44,11 +44,13 @@ function createCategoryUI() {
   container.style.borderRadius = "12px";
   container.style.boxShadow = "0 10px 30px rgba(0,0,0,0.25)";
   container.style.maxWidth = "220px";
+  container.style.fontFamily = "sans-serif";
 
   const title = document.createElement("div");
   title.textContent = "Satelliten-Filter";
   title.style.fontWeight = "700";
   title.style.marginBottom = "8px";
+  title.style.fontSize = "14px";
   container.appendChild(title);
 
   for (let key in categories) {
@@ -57,11 +59,15 @@ function createCategoryUI() {
     label.style.alignItems = "center";
     label.style.marginBottom = "6px";
     label.style.gap = "8px";
+    label.style.fontSize = "13px";
+    label.style.cursor = "pointer";
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = true;
     checkbox.dataset.category = key;
+    checkbox.style.margin = "0";
+    checkbox.style.cursor = "pointer";
 
     checkbox.onchange = () => {
       categories[key].visible = checkbox.checked;
@@ -74,9 +80,11 @@ function createCategoryUI() {
     colorBox.style.height = "12px";
     colorBox.style.borderRadius = "3px";
     colorBox.style.background = categories[key].color.toCssColorString();
+    colorBox.style.flexShrink = "0";
 
     const text = document.createElement("span");
     text.textContent = key;
+    text.style.whiteSpace = "nowrap";
 
     label.appendChild(checkbox);
     label.appendChild(colorBox);
@@ -85,8 +93,11 @@ function createCategoryUI() {
   }
 
   visibleCountElement = document.createElement("div");
-  visibleCountElement.style.marginTop = "10px";
+  visibleCountElement.style.marginTop = "0px";
+  visibleCountElement.style.paddingTop = "12px";
+  visibleCountElement.style.borderTop = "1px solid rgba(255,255,255,0.2)";
   visibleCountElement.style.fontWeight = "600";
+  visibleCountElement.style.fontSize = "13px";
   visibleCountElement.textContent = "Satelliten sichtbar: 0";
   container.appendChild(visibleCountElement);
 
@@ -117,12 +128,15 @@ function createDetailsPanel() {
   panel.style.right = "10px";
   panel.style.zIndex = "1001";
   panel.style.width = "300px";
-  panel.style.maxWidth = "calc(100vw - 40px)";
+  panel.style.maxWidth = "calc(100vw - 20px)";
   panel.style.background = "rgba(0,0,0,0.88)";
   panel.style.color = "white";
   panel.style.padding = "14px";
   panel.style.borderRadius = "14px";
   panel.style.boxShadow = "0 12px 35px rgba(0,0,0,0.35)";
+  panel.style.fontFamily = "sans-serif";
+  panel.style.overflow = "auto";
+  panel.style.maxHeight = "calc(100vh - 20px)";
 
   const header = document.createElement("div");
   header.style.display = "flex";
@@ -147,6 +161,7 @@ function createDetailsPanel() {
   detailsCloseButton.style.height = "30px";
   detailsCloseButton.style.borderRadius = "8px";
   detailsCloseButton.style.cursor = "pointer";
+  detailsCloseButton.style.flexShrink = "0";
 
   header.appendChild(detailsCloseButton);
   panel.appendChild(header);
