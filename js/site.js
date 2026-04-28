@@ -1,5 +1,6 @@
 const pathPrefix = window.location.pathname.includes('/continents/') ? '..' : '.';
 const apiFallbackUrl = `${pathPrefix}/db.json`;
+const sidebarFallbackPath = window.location.pathname.includes('/continents/') ? '../legacy_companies/sidebar.html' : './legacy_companies/sidebar.html';
 const apiHostUrl = 'http://127.0.0.1:3000';
 
 function getRootRelative(path) {
@@ -18,18 +19,28 @@ async function fetchCompanies() {
   const url = getApiUrl('companies');
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status} ${response.statusText}`);
+    }
     const data = await response.json();
     if (Array.isArray(data)) {
       return data;
     }
     return data.companies || [];
   } catch (error) {
+    console.warn('Primary company fetch failed, falling back to local JSON:', error);
     if (url !== apiFallbackUrl) {
-      const response = await fetch(apiFallbackUrl);
-      const data = await response.json();
-      return data.companies || [];
+      try {
+        const response = await fetch(apiFallbackUrl);
+        if (!response.ok) {
+          throw new Error(`Fallback request failed: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data.companies || [];
+      } catch (fallbackError) {
+        console.error('Fallback company fetch failed:', fallbackError);
+      }
     }
-    console.error('Unable to load company data:', error);
     return [];
   }
 }
@@ -82,13 +93,55 @@ function createSidebarHtml(companies) {
   `;
 }
 
+async function fetchSidebarFallback() {
+  try {
+    const response = await fetch(sidebarFallbackPath);
+    if (!response.ok) {
+      throw new Error(`Fallback sidebar request failed: ${response.status} ${response.statusText}`);
+    }
+    return await response.text();
+  } catch (error) {
+    console.warn('Fallback sidebar load failed:', error);
+    return null;
+  }
+}
+
 async function renderSidebar(containerId = 'sidebar-container') {
   const container = document.getElementById(containerId);
   if (!container) {
     return;
   }
-  const companies = await fetchCompanies();
-  container.innerHTML = createSidebarHtml(companies);
+  try {
+    const companies = await fetchCompanies();
+    if (!companies || companies.length === 0) {
+      const fallbackHtml = await fetchSidebarFallback();
+      if (fallbackHtml) {
+        container.innerHTML = fallbackHtml;
+        return;
+      }
+      container.innerHTML = `
+        <div class="sidebar d-flex flex-column gap-2">
+          <p style="color:#fff; padding: 20px;">Sidebar is loading or no companies are available.</p>
+          <a href="satellites.html" class="btn btn-primary w-100 text-start">Satellites</a>
+        </div>
+      `;
+      return;
+    }
+    container.innerHTML = createSidebarHtml(companies);
+  } catch (error) {
+    console.error('Sidebar render failed:', error);
+    const fallbackHtml = await fetchSidebarFallback();
+    if (fallbackHtml) {
+      container.innerHTML = fallbackHtml;
+      return;
+    }
+    container.innerHTML = `
+      <div class="sidebar d-flex flex-column gap-2">
+        <p style="color:#fff; padding: 20px;">Sidebar is currently unavailable.</p>
+        <a href="satellites.html" class="btn btn-primary w-100 text-start">Satellites</a>
+      </div>
+    `;
+  }
 }
 
 function createCompanyDetailHtml(company) {
