@@ -213,3 +213,46 @@ footer {
   margin: 0;
   padding: 0;
 }
+
+/* ============================
+   Responsive Styles für Satelliten-Seite
+============================ */
+@media (max-width: 768px) {
+  /* Kleinere Bildschirme */
+  .home-link {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+  
+  #debug-info {
+    font-size: 10px !important;
+    padding: 6px 8px !important;
+    max-width: 150px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Sehr kleine Bildschirme */
+  .home-link {
+    font-size: 11px !important;
+    padding: 5px 8px !important;
+    top: 5px !important;
+    left: 5px !important;
+  }
+  
+  #debug-info {
+    font-size: 9px !important;
+    padding: 4px 6px !important;
+    max-width: 120px !important;
+    top: 40px !important;
+  }
+}
+
+/* Cesium Container responsive */
+#cesiumContainer {
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
