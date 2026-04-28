@@ -1,0 +1,14 @@
+{
+  "name": "wmc_projekt_mfkk",
+  "version": "1.0.0",
+  "description": "Spaceflight information website with a JSON-backed company page.",
+  "scripts": {
+    "json-server": "json-server --watch db.json --port 3000",
+    "start": "npx http-server . -p 8080",
+    "dev": "npx json-server --watch db.json --port 3000"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.3",
+    "http-server": "^14.2.0"
+  }
+}

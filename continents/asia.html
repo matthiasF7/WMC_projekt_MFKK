@@ -65,7 +65,7 @@
               ISRO is India's national space agency and a leader in cost-effective space missions
               and satellite technology.
             </p>
-            <a href="/companies/indian-space-research.html" >Learn more about ISRO</a>
+            <a href="../company.html?id=indian-space-research">Learn more about ISRO</a>
           </div>
         </div>
       </div>
@@ -93,14 +93,11 @@
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/site.js"></script>
   <script>
-  fetch("../companies/sidebar.html")
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById("sidebar-container").innerHTML = html;
-    });
-</script>
+    renderSidebar();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
