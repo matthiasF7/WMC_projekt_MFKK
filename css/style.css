@@ -1,14 +1,26 @@
 /* ============================
    Allgemeine Styles
 ============================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg-color: #020212;
+  --bg-image: url('../pictures/earth-background.png');
+  --surface: rgba(10, 10, 30, 0.85);
+  --surface-soft: rgba(10, 10, 30, 0.55);
+  --text: #f0f0f0;
+  --muted: #d0d0d0;
+  --accent: rgb(0, 180, 230);
+  --accent-soft: rgba(0, 120, 215, 0.15);
+  --border: rgba(0, 120, 215, 0.6);
+  --button-bg: rgba(0, 120, 215, 0.9);
+  --button-hover: rgba(0, 180, 230, 0.95);
 }
 
 body {
-  background-image: url('../pictures/earth-background.png');
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: var(--bg-image);
+  background-color: var(--bg-color);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -16,9 +28,37 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   height: 100vh;
-  color: #f0f0f0;
+  color: var(--text);
   font-size: 17px;
   line-height: 1.8;
+}
+
+body.light-theme {
+  --bg-color: #f7f8fc;
+  --bg-image: none;
+  --surface: rgba(255, 255, 255, 0.95);
+  --surface-soft: rgba(255, 255, 255, 0.8);
+  --text: #111827;
+  --muted: #4a5568;
+  --accent: #0d6efd;
+  --accent-soft: rgba(13, 110, 253, 0.15);
+  --border: rgba(13, 110, 253, 0.35);
+  --button-bg: rgba(13, 110, 253, 0.95);
+  --button-hover: rgba(15, 120, 255, 0.95);
+}
+
+body.dark-theme {
+  --bg-color: #020212;
+  --bg-image: url('../pictures/earth-background.png');
+  --surface: rgba(10, 10, 30, 0.85);
+  --surface-soft: rgba(10, 10, 30, 0.55);
+  --text: #f0f0f0;
+  --muted: #d0d0d0;
+  --accent: rgb(0, 180, 230);
+  --accent-soft: rgba(0, 120, 215, 0.15);
+  --border: rgba(0, 120, 215, 0.6);
+  --button-bg: rgba(0, 120, 215, 0.9);
+  --button-hover: rgba(0, 180, 230, 0.95);
 }
 
 /* ============================
@@ -26,7 +66,7 @@ body {
 ============================ */
 .sidebar {
   width: 200px; /* wieder etwas kleiner */
-  background: rgba(10, 10, 30, 0.85); /* leicht transparent, Hintergrund sichtbar */
+  background: var(--surface); /* leicht transparent, Hintergrund sichtbar */
   height: 100vh;
   padding: 20px;
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
@@ -41,7 +81,7 @@ body {
 .menu-btn {
   width: 100%;
   padding: 12px 15px;
-  background: rgba(0, 120, 215, 0.9);
+  background: var(--button-bg);
   border: none;
   color: #fff;
   font-size: 16px;
@@ -61,7 +101,7 @@ body {
 }
 
 .menu-btn:hover {
-  background: rgba(0, 180, 230, 0.95);
+  background: var(--button-hover);
 }
 
 .menu-list {
@@ -76,21 +116,21 @@ body {
 .menu-list a {
   display: block;
   padding: 10px 15px;
-  color: #f0f0f0;
+  color: var(--text);
   text-decoration: none;
   font-size: 15px;
   border-left: 3px solid transparent;
   transition: all 0.2s ease;
-  background: rgba(0, 120, 215, 0.15);
+  background: var(--accent-soft);
   margin-bottom: 6px;
   border-radius: 6px;
 }
 
 .menu-list a:hover {
   background: rgba(0, 180, 230, 0.25);
-  border-left-color: rgb(0, 120, 215);
+  border-left-color: var(--accent);
   padding-left: 20px;
-  color: rgb(0, 180, 230);
+  color: var(--accent);
 }
 
 
@@ -108,14 +148,14 @@ body {
 
 .header-section {
   padding: 20px 40px;
-  background: rgba(10, 10, 30, 0.5); /* transparent für Hintergrundsichtbarkeit */
-  border-bottom: 2px solid rgba(0, 120, 215, 0.7);
+  background: var(--surface-soft); /* transparent für Hintergrundsichtbarkeit */
+  border-bottom: 2px solid var(--border);
   border-radius: 0 0 10px 10px;
   backdrop-filter: blur(5px); /* leichter Blur für modernes Aussehen */
 }
 
 .header-section h1 {
-  color: #ffffff;
+  color: var(--text);
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
   font-size: 38px;
   margin-bottom: 10px;
@@ -142,11 +182,11 @@ body {
    Content Box
 ============================ */
 .content-box {
-  background: rgba(10, 10, 30, 0.55); /* leicht transparent */
+  background: var(--surface-soft); /* leicht transparent */
   padding: 40px;
   border-radius: 12px;
-  border: 2px solid rgba(0, 120, 215, 0.6);
-  color: #f0f0f0;
+  border: 2px solid var(--border);
+  color: var(--text);
   flex: 1;
   overflow-y: auto;
   margin: 20px 20px 20px 20px;
@@ -191,11 +231,11 @@ body {
    Footer
 ============================ */
 footer {
-  background: rgba(10, 10, 30, 0.5);
+  background: var(--surface-soft);
   padding: 12px 20px;
   text-align: center;
-  color: #d0d0d0;
-  border-top: 2px solid rgba(0, 120, 215, 0.6);
+  color: var(--muted);
+  border-top: 2px solid var(--border);
   font-size: 14px;
   flex-shrink: 0;
 }

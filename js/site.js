@@ -2,9 +2,56 @@ const pathPrefix = window.location.pathname.includes('/continents/') ? '..' : '.
 const apiFallbackUrl = `${pathPrefix}/db.json`;
 const sidebarFallbackPath = window.location.pathname.includes('/continents/') ? '../legacy_companies/sidebar.html' : './legacy_companies/sidebar.html';
 const apiHostUrl = 'http://127.0.0.1:3000';
+const themeStorageKey = 'spaceflightTheme';
 
 function getRootRelative(path) {
   return window.location.pathname.includes('/continents/') ? `../${path}` : `./${path}`;
+}
+
+function getStoredTheme() {
+  const stored = localStorage.getItem(themeStorageKey);
+  if (stored === 'light' || stored === 'dark') {
+    return stored;
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  document.body.classList.toggle('dark-theme', theme === 'dark');
+  document.body.classList.toggle('light-theme', theme === 'light');
+  document.body.dataset.theme = theme;
+  const label = theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+  document.querySelectorAll('#theme-toggle-btn, #theme-toggle-button').forEach(button => {
+    if (button) {
+      button.textContent = label;
+    }
+  });
+}
+
+function setTheme(theme) {
+  localStorage.setItem(themeStorageKey, theme);
+  applyTheme(theme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+  setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+}
+
+function setupThemeToggle() {
+  const sidebarButton = document.getElementById('theme-toggle-btn');
+  const headerButton = document.getElementById('theme-toggle-button');
+  if (sidebarButton) {
+    sidebarButton.addEventListener('click', toggleTheme);
+  }
+  if (headerButton) {
+    headerButton.addEventListener('click', toggleTheme);
+  }
+  applyTheme(getStoredTheme());
+}
+
+function initTheme() {
+  applyTheme(getStoredTheme());
 }
 
 function getApiUrl(resource) {
@@ -87,6 +134,7 @@ function createSidebarHtml(companies) {
 
   return `
     <div class="sidebar d-flex flex-column gap-2">
+      <button id="theme-toggle-btn" class="menu-btn btn btn-secondary w-100 text-start" type="button"></button>
       ${sidebarSections}
       <a href="satellites.html" class="btn btn-primary w-100 text-start">Satellites</a>
     </div>
@@ -117,6 +165,7 @@ async function renderSidebar(containerId = 'sidebar-container') {
       const fallbackHtml = await fetchSidebarFallback();
       if (fallbackHtml) {
         container.innerHTML = fallbackHtml;
+        setupThemeToggle();
         return;
       }
       container.innerHTML = `
@@ -125,9 +174,11 @@ async function renderSidebar(containerId = 'sidebar-container') {
           <a href="satellites.html" class="btn btn-primary w-100 text-start">Satellites</a>
         </div>
       `;
+      setupThemeToggle();
       return;
     }
     container.innerHTML = createSidebarHtml(companies);
+    setupThemeToggle();
   } catch (error) {
     console.error('Sidebar render failed:', error);
     const fallbackHtml = await fetchSidebarFallback();
