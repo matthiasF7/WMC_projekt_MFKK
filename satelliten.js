@@ -152,7 +152,7 @@ function createDetailsPanel() {
 
   detailsCloseButton = document.createElement("button");
   detailsCloseButton.type = "button";
-  detailsCloseButton.textContent = "×";
+  detailsCloseButton.textContent = "x";
   detailsCloseButton.style.background = "rgba(255,255,255,0.1)";
   detailsCloseButton.style.border = "none";
   detailsCloseButton.style.color = "white";
