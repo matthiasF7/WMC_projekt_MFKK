@@ -12,6 +12,7 @@
       "overview": "Founded in 2002 by Elon Musk, SpaceX brought reusability to orbit with Falcon 9 and is building the Starship system for lunar and Mars missions.",
       "keyBusinessAreas": ["Reusable rockets", "Commercial and government launches", "Starlink satellite constellation"],
       "notableProjects": "Falcon 9, Falcon Heavy, Crew Dragon, Starship, Starlink.",
+      "website": "https://www.spacex.com",
       "futureDirection": "Scaling Starlink, finalizing Starship and supporting human missions to the Moon and Mars."
     },
     {
@@ -26,6 +27,7 @@
       "overview": "Founded by Jeff Bezos, Blue Origin develops New Shepard for suborbital flights and is designing New Glenn for orbital missions.",
       "keyBusinessAreas": ["Reusable suborbital rockets", "Orbital launch development", "Space infrastructure"],
       "notableProjects": "New Shepard, New Glenn, BE-4 engine development.",
+      "website": "https://www.blueorigin.com",
       "futureDirection": "Preparing New Glenn for commercial launches and expanding private access to space."
     },
     {
@@ -40,6 +42,7 @@
       "overview": "Known for Atlas V, Delta IV and Vulcan Centaur, ULA delivers high-reliability orbital access from the United States.",
       "keyBusinessAreas": ["Government launches", "National security missions", "Heavy lift launch vehicles"],
       "notableProjects": "Atlas V, Delta IV, Vulcan Centaur.",
+      "website": "https://www.ulalaunch.com",
       "futureDirection": "Deploying Vulcan Centaur for future government and commercial missions."
     },
     {
@@ -54,6 +57,7 @@
       "overview": "Arianespace supports European and global customers with launch services and mission management. It plays a central role in European space infrastructure.",
       "keyBusinessAreas": ["Commercial satellite launches", "European launch systems", "Mission management"],
       "notableProjects": "Ariane 5, Vega, Vega C, Ariane 6 development.",
+      "website": "https://www.arianespace.com",
       "futureDirection": "Introducing Ariane 6 and evolving Vega C for Europe's future satellite launch needs."
     },
     {
@@ -68,6 +72,7 @@
       "overview": "The company works on satellite manufacturing, earth observation systems and supporting European launch capabilities.",
       "keyBusinessAreas": ["Satellite manufacturing", "Earth observation", "Spacecraft integration"],
       "notableProjects": "Satellite systems for ESA, telecom spacecraft, observation satellites.",
+      "website": "https://www.airbus.com/en/products-services/space",
       "futureDirection": "Focusing on digitalization, innovation in satellite technology and European space resilience."
     },
     {
@@ -82,6 +87,7 @@
       "overview": "The company covers satellite platforms, payloads and key components for launch vehicles and space missions.",
       "keyBusinessAreas": ["Satellite systems", "Earth observation", "Scientific missions"],
       "notableProjects": "Small satellite constellations, ESA mission payloads.",
+      "website": "https://www.ohb.de",
       "futureDirection": "Expanding small satellite capabilities and participation in European space programs."
     },
     {
@@ -96,6 +102,7 @@
       "overview": "The corporation designs Long March rockets, satellites and mission systems for civil and military programs.",
       "keyBusinessAreas": ["Launch vehicles", "Satellite systems", "Space exploration support"],
       "notableProjects": "Long March launch family, Chang'e lunar program support.",
+      "website": "https://english.spacechina.com",
       "futureDirection": "Supporting China's expanding space exploration agenda and commercial satellite services."
     },
     {
@@ -110,6 +117,7 @@
       "overview": "The agency operates the Polar Satellite Launch Vehicle (PSLV) and Geosynchronous Satellite Launch Vehicle (GSLV) families.",
       "keyBusinessAreas": ["Satellite launches", "Earth observation", "Lunar and planetary missions"],
       "notableProjects": "PSLV, GSLV, Chandrayaan, Mars Orbiter Mission.",
+      "website": "https://www.isro.gov.in",
       "futureDirection": "Strengthening launch capabilities and expanding scientific exploration programs."
     },
     {
@@ -124,6 +132,7 @@
       "overview": "The company aims to provide reliable small-to-medium orbital launch services with reusable technology. ",
       "keyBusinessAreas": ["Commercial orbital launches", "Launch vehicle development", "Reusability research"],
       "notableProjects": "Zhuque series rockets, reusable launch demonstrators.",
+      "website": "https://www.landspace.com",
       "futureDirection": "Improving launch frequency and supporting China's commercial space market."
     },
     {
@@ -138,6 +147,7 @@
       "overview": "The agency coordinates Egypt's space policy and satellite programs to support agriculture, environment and communications.",
       "keyBusinessAreas": ["Earth observation", "Satellite development", "Space research"],
       "notableProjects": "EgyptSat, NILESat communications satellites.",
+      "website": "https://esa.gov.eg",
       "futureDirection": "Growing domestic satellite capabilities and expanding scientific space cooperation."
     },
     {
@@ -152,6 +162,7 @@
       "overview": "The agency operates ground stations, provides satellite data services and promotes space technology development in Africa.",
       "keyBusinessAreas": ["Earth observation", "Space science", "Ground infrastructure"],
       "notableProjects": "Ground receiving stations, South African satellite research collaborations.",
+      "website": "https://www.sansa.org.za",
       "futureDirection": "Expanding data services and supporting continental space collaborations."
     },
     {
@@ -166,6 +177,7 @@
       "overview": "The company develops imaging satellites and payloads for government and commercial customers worldwide.",
       "keyBusinessAreas": ["Small satellite manufacturing", "Payload systems", "Earth observation"],
       "notableProjects": "Imaging satellites for environmental and infrastructure monitoring.",
+      "website": "https://www.dragonfly.co.za",
       "futureDirection": "Expanding small satellite production and global launch partnerships."
     },
     {
@@ -180,6 +192,7 @@
       "overview": "The agency promotes space innovation, fosters commercial partnerships and coordinates Australian government space programs.",
       "keyBusinessAreas": ["Industry development", "Regulation and policy", "International cooperation"],
       "notableProjects": "Australian space strategy, Earth observation partnerships.",
+      "website": "https://www.industry.gov.au/australian-space-agency",
       "futureDirection": "Growing the local space sector and strengthening global partnerships."
     },
     {
@@ -194,6 +207,7 @@
       "overview": "The company develops launch pads and services for small rockets to access southern hemisphere orbital inclinations.",
       "keyBusinessAreas": ["Launch infrastructure", "Mission services", "Small satellite access"],
       "notableProjects": "Launch sites for commercial and research rockets in Australia.",
+      "website": "https://www.southernlaunch.space/",
       "futureDirection": "Expanding launch readiness for more customer missions from Australia."
     },
     {
@@ -208,6 +222,7 @@
       "overview": "The company focuses on low-cost launch opportunities for regional and international payload providers.",
       "keyBusinessAreas": ["Hybrid propulsion", "Small satellite launch", "Space systems integration"],
       "notableProjects": "Hybrid rocket demonstrations and small launch vehicle development.",
+      "website": "https://www.gspace.com/",
       "futureDirection": "Advancing commercial orbital launch services from Australia."
     }
   ]

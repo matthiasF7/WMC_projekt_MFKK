@@ -217,6 +217,8 @@ function createCompanyDetailHtml(company) {
 
     <h3>Future Direction</h3>
     <p>${company.futureDirection}</p>
+
+    ${company.website ? `<div class="company-website-link mt-4"><a href="${company.website}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Visit official website</a></div>` : ''}
   `;
 }
 
