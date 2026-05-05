@@ -29,7 +29,7 @@ body {
   display: flex;
   height: 100vh;
   color: var(--text);
-  font-size: 17px;
+  font-size: 1.0625em; /* 17px */
   line-height: 1.8;
 }
 
@@ -65,10 +65,10 @@ body.dark-theme {
    Sidebar
 ============================ */
 .sidebar {
-  width: 200px; /* wieder etwas kleiner */
+  width: 15vw; /* responsive statt 200px */
   background: var(--surface); /* leicht transparent, Hintergrund sichtbar */
   height: 100vh;
-  padding: 20px;
+  padding: 1.25em; /* statt 20px */
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   position: fixed;
@@ -80,19 +80,19 @@ body.dark-theme {
 
 .menu-btn {
   width: 100%;
-  padding: 12px 15px;
+  padding: 0.75em 0.9375em; /* statt 12px 15px */
   background: var(--button-bg);
   border: none;
   color: #fff;
-  font-size: 16px;
+  font-size: 1em; /* statt 16px */
   font-weight: 600;
   cursor: pointer;
   border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625em; /* statt 10px */
   transition: all 0.3s ease;
-  margin-top: 12px;
+  margin-top: 0.75em; /* statt 12px */
   text-decoration: none;
 }
 
@@ -106,7 +106,7 @@ body.dark-theme {
 
 .menu-list {
   display: none;
-  margin-top: 8px;
+  margin-top: 0.5em; /* statt 8px */
 }
 
 .menu-list.show {
@@ -115,14 +115,14 @@ body.dark-theme {
 
 .menu-list a {
   display: block;
-  padding: 10px 15px;
+  padding: 0.625em 0.9375em; /* statt 10px 15px */
   color: var(--text);
   text-decoration: none;
-  font-size: 15px;
+  font-size: 0.9375em; /* statt 15px */
   border-left: 3px solid transparent;
   transition: all 0.2s ease;
   background: var(--accent-soft);
-  margin-bottom: 6px;
+  margin-bottom: 0.375em; /* statt 6px */
   border-radius: 6px;
 }
 
@@ -139,15 +139,15 @@ body.dark-theme {
    Main Content
 ============================ */
 .main-content {
-  margin-left: 200px;
-  width: calc(100% - 200px);
+  margin-left: 15vw; /* responsive statt 200px */
+  width: calc(100% - 15vw); /* responsive statt calc(100% - 200px) */
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .header-section {
-  padding: 20px 40px;
+  padding: 1.25em 2.5em; /* statt 20px 40px */
   background: var(--surface-soft); /* transparent für Hintergrundsichtbarkeit */
   border-bottom: 2px solid var(--border);
   border-radius: 0 0 10px 10px;
@@ -157,14 +157,14 @@ body.dark-theme {
 .header-section h1 {
   color: var(--text);
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-  font-size: 38px;
-  margin-bottom: 10px;
+  font-size: 2.375em; /* statt 38px */
+  margin-bottom: 0.625em; /* statt 10px */
 }
 
 .breadcrumb {
   color: #d0d0d0;
-  font-size: 15px;
-  margin-bottom: 8px;
+  font-size: 0.9375em; /* statt 15px */
+  margin-bottom: 0.5em; /* statt 8px */
 }
 
 .breadcrumb a {
@@ -183,43 +183,43 @@ body.dark-theme {
 ============================ */
 .content-box {
   background: var(--surface-soft); /* leicht transparent */
-  padding: 40px;
+  padding: 2.5em; /* statt 40px */
   border-radius: 12px;
   border: 2px solid var(--border);
   color: var(--text);
   flex: 1;
   overflow-y: auto;
-  margin: 20px 20px 20px 20px;
+  margin: 1.25em; /* statt 20px */
   backdrop-filter: blur(3px);
 }
 
 .content-box h2 {
   color: rgb(0, 180, 230);
-  margin-bottom: 20px;
-  font-size: 32px;
+  margin-bottom: 1.25em; /* statt 20px */
+  font-size: 2em; /* statt 32px */
 }
 
 .content-box h3 {
   color: rgb(0, 180, 230);
-  margin-top: 25px;
-  margin-bottom: 15px;
-  font-size: 22px;
+  margin-top: 1.5625em; /* statt 25px */
+  margin-bottom: 0.9375em; /* statt 15px */
+  font-size: 1.375em; /* statt 22px */
 }
 
 .content-box p {
-  font-size: 17px;
+  font-size: 1.0625em; /* statt 17px */
   line-height: 1.8;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375em; /* statt 15px */
 }
 
 .content-box ul {
-  margin-left: 20px;
-  margin-bottom: 15px;
+  margin-left: 1.25em; /* statt 20px */
+  margin-bottom: 0.9375em; /* statt 15px */
 }
 
 .content-box li {
-  margin-bottom: 8px;
-  font-size: 16px;
+  margin-bottom: 0.5em; /* statt 8px */
+  font-size: 1em; /* statt 16px */
   line-height: 1.6;
 }
 
@@ -232,11 +232,11 @@ body.dark-theme {
 ============================ */
 footer {
   background: var(--surface-soft);
-  padding: 12px 20px;
+  padding: 0.75em 1.25em; /* statt 12px 20px */
   text-align: center;
   color: var(--muted);
   border-top: 2px solid var(--border);
-  font-size: 14px;
+  font-size: 0.875em; /* statt 14px */
   flex-shrink: 0;
 }
 
@@ -260,31 +260,31 @@ footer {
 @media (max-width: 768px) {
   /* Kleinere Bildschirme */
   .home-link {
-    font-size: 12px !important;
-    padding: 6px 10px !important;
+    font-size: 0.75em !important; /* statt 12px */
+    padding: 0.375em 0.625em !important; /* statt 6px 10px */
   }
   
   #debug-info {
-    font-size: 10px !important;
-    padding: 6px 8px !important;
-    max-width: 150px !important;
+    font-size: 0.625em !important; /* statt 10px */
+    padding: 0.375em 0.5em !important; /* statt 6px 8px */
+    max-width: 9.375em !important; /* statt 150px */
   }
 }
 
 @media (max-width: 480px) {
   /* Sehr kleine Bildschirme */
   .home-link {
-    font-size: 11px !important;
-    padding: 5px 8px !important;
-    top: 5px !important;
-    left: 5px !important;
+    font-size: 0.6875em !important; /* statt 11px */
+    padding: 0.3125em 0.5em !important; /* statt 5px 8px */
+    top: 0.3125em !important; /* statt 5px */
+    left: 0.3125em !important; /* statt 5px */
   }
   
   #debug-info {
-    font-size: 9px !important;
-    padding: 4px 6px !important;
-    max-width: 120px !important;
-    top: 40px !important;
+    font-size: 0.5625em !important; /* statt 9px */
+    padding: 0.25em 0.375em !important; /* statt 4px 6px */
+    max-width: 7.5em !important; /* statt 120px */
+    top: 2.5em !important; /* statt 40px */
   }
 }
 
