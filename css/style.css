@@ -25,6 +25,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
+  background-blend-mode: var(--bg-blend-mode, normal);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   height: 100vh;
@@ -34,15 +35,18 @@ body {
 }
 
 body.light-theme {
-  --bg-color: #f7f8fc;
-  --bg-image: none;
-  --surface: rgba(255, 255, 255, 0.95);
-  --surface-soft: rgba(255, 255, 255, 0.8);
-  --text: #111827;
-  --muted: #4a5568;
+  --bg-color: #edf2f7;
+  --bg-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)),
+                radial-gradient(circle at bottom right, rgba(249, 250, 252, 0.55), rgba(255, 255, 255, 0)),
+                url('../pictures/background-light.jpg');
+  --bg-blend-mode: normal;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-soft: rgba(255, 255, 255, 0.62);
+  --text: #0f172a;
+  --muted: #475569;
   --accent: #0d6efd;
-  --accent-soft: rgba(13, 110, 253, 0.15);
-  --border: rgba(13, 110, 253, 0.35);
+  --accent-soft: rgba(13, 110, 253, 0.16);
+  --border: rgba(13, 110, 253, 0.14);
   --button-bg: rgba(13, 110, 253, 0.95);
   --button-hover: rgba(15, 120, 255, 0.95);
 }
@@ -50,6 +54,7 @@ body.light-theme {
 body.dark-theme {
   --bg-color: #020212;
   --bg-image: url('../pictures/earth-background.png');
+  --bg-blend-mode: normal;
   --surface: rgba(10, 10, 30, 0.85);
   --surface-soft: rgba(10, 10, 30, 0.55);
   --text: #f0f0f0;
@@ -66,10 +71,10 @@ body.dark-theme {
 ============================ */
 .sidebar {
   width: 15vw; /* responsive statt 200px */
-  background: var(--surface); /* leicht transparent, Hintergrund sichtbar */
+  background: var(--surface);
   height: 100vh;
   padding: 1.25em; /* statt 20px */
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 0 24px rgba(15, 23, 42, 0.12);
   overflow-y: auto;
   position: fixed;
   left: 0;
@@ -149,9 +154,9 @@ body.dark-theme {
 .header-section {
   padding: 1.25em 2.5em; /* statt 20px 40px */
   background: var(--surface-soft); /* transparent für Hintergrundsichtbarkeit */
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-radius: 0 0 10px 10px;
-  backdrop-filter: blur(5px); /* leichter Blur für modernes Aussehen */
+  backdrop-filter: blur(6px); /* leichter Blur für modernes Aussehen */
 }
 
 .header-section h1 {
@@ -171,11 +176,20 @@ body.dark-theme {
   color: rgba(0, 180, 230, 0.9);
   text-decoration: none;
   transition: all 0.2s ease;
+  padding: 0 0.25em;
+  border-radius: 4px;
 }
 
-.breadcrumb a:hover {
-  color: #ffffff;
-  text-decoration: underline;
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.18);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover strong,
+.breadcrumb a:focus-visible strong {
+  color: var(--text);
 }
 
 /* ============================
@@ -185,12 +199,13 @@ body.dark-theme {
   background: var(--surface-soft); /* leicht transparent */
   padding: 2.5em; /* statt 40px */
   border-radius: 12px;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   color: var(--text);
   flex: 1;
   overflow-y: auto;
   margin: 1.25em; /* statt 20px */
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.06);
 }
 
 .content-box h2 {
