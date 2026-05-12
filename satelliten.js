@@ -1,4 +1,5 @@
 const satellites = [];
+const loadedSatelliteNames = new Set();
 let orbitLine = null;
 let visibleCountElement = null;
 let satelliteDetails = null;
@@ -297,50 +298,6 @@ function initializeAfterViewer() {
     );
   }
 
-  const now = new Date();
-  const tleLine1 = "1 25544U 98067A   " + formatTLEDate(now) + "  .00016717  00000+0  10270-3 0  9995";
-  const tleLine2 = "2 25544  51.6434  60.6281 0004603  69.0391  58.7952 15.50011655439670";
-  let issSatrec;
-
-  try {
-    issSatrec = satellite.twoline2satrec(tleLine1, tleLine2);
-  } catch (e) {
-    console.error("❌ Fehler beim Laden der ISS TLE:", e);
-    return;
-  }
-
-  const issCategory = "ISS";
-
-  const iss = viewer.entities.add({
-    name: "ISS",
-    position: new Cesium.CallbackProperty(() => {
-      const now = new Date();
-      try {
-        const pv = satellite.propagate(issSatrec, now);
-        if (!pv.position) return null;
-        const gmst = satellite.gstime(now);
-        const pos = satellite.eciToEcf(pv.position, gmst);
-        return Cesium.Cartesian3.fromElements(pos.x * 1000, pos.y * 1000, pos.z * 1000);
-      } catch (e) {
-        console.error("Fehler bei ISS-Position:", e);
-        return null;
-      }
-    }, false),
-    point: {
-      pixelSize: 8,
-      color: categories[issCategory].color
-    },
-    show: categories[issCategory].visible
-  });
-
-  satellites.push({
-    entity: iss,
-    satrec: issSatrec,
-    category: issCategory,
-    line1: tleLine1,
-    line2: tleLine2
-  });
-
   initOrbitHandler();
   updateVisibility();
   startLoadingSatellites();
@@ -359,18 +316,46 @@ setTimeout(initializeAfterViewer, 100);
 
 // Laden von Satelliten aus URL
 function startLoadingSatellites() {
-  const sources = [
-    "https://celestrak.org/NORAD/elements/stations.txt",
-    "https://celestrak.org/NORAD/elements/gps-ops.txt",
-    "https://celestrak.org/NORAD/elements/weather.txt",
-    "https://celestrak.org/NORAD/elements/science.txt",
-    "https://celestrak.org/NORAD/elements/starlink.txt"
-  ];
+  const apiUrl = "https://tle.ivanstanojevic.me/api/tle?page-size=50";
 
-  sources.forEach(url => loadSatellites(url));
+  return loadTleApi(apiUrl)
+    .then(() => updateVisibility())
+    .catch(err => console.error("Fehler beim Laden der TLE API:", err));
+}
+
+function loadTleApi(url) {
+  if (typeof satellite === 'undefined') {
+    console.error("satellite.js nicht verfügbar");
+    return Promise.resolve();
+  }
+
+  return fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      if (!data?.member?.length) {
+        console.warn("TLE API lieferte keine Satelliten:", data);
+        return;
+      }
+
+      data.member.forEach(item => {
+        const name = item.name?.trim();
+        const line1 = item.line1?.trim();
+        const line2 = item.line2?.trim();
+        if (!name || !line1 || !line2) return;
+        createSatellite(name, line1, line2);
+      });
+    });
 }
 
 function createSatellite(name, line1, line2) {
+  const normalizedName = name?.trim().toUpperCase();
+  if (!normalizedName || loadedSatelliteNames.has(normalizedName)) {
+    return;
+  }
+
   let satrec;
   try {
     satrec = satellite.twoline2satrec(line1, line2);
@@ -384,6 +369,7 @@ function createSatellite(name, line1, line2) {
     return;
   }
 
+  loadedSatelliteNames.add(normalizedName);
   const category = getCategory(name);
 
   const entity = viewer.entities.add({
@@ -417,24 +403,23 @@ function createSatellite(name, line1, line2) {
 function loadSatellites(url) {
   if (typeof satellite === 'undefined') {
     console.error("satellite.js nicht verfügbar");
-    return;
+    return Promise.resolve();
   }
 
-  fetch(url)
+  return fetch(url)
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.text();
     })
     .then(data => {
-      const lines = data.split("\n");
+      const lines = data.replace(/\r/g, "").split("\n");
       for (let i = 0; i < lines.length; i += 3) {
         const name = lines[i]?.trim();
-        const line1 = lines[i + 1];
-        const line2 = lines[i + 2];
+        const line1 = lines[i + 1]?.trim();
+        const line2 = lines[i + 2]?.trim();
         if (!name || !line1 || !line2) continue;
         createSatellite(name, line1, line2);
       }
-      updateVisibility();
     })
     .catch(err => {
       console.error(`Fehler beim Laden von ${url}:`, err);
@@ -513,7 +498,7 @@ function createSatelliteInfo(name, line1, line2, category) {
         <div><strong>Zweck:</strong> ${purpose}</div>
         <div><strong>Startjahr:</strong> ${year}</div>
         <div><strong>Orbittyp:</strong> ${orbit}</div>
-        <div><strong>Datenquelle:</strong> CelesTrak</div>
+        <div><strong>Datenquelle:</strong> Public TLE API</div>
       </div>
     </div>
   `;
